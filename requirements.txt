@@ -1,0 +1,11 @@
+numpy==1.19.2
+pandas==1.1.2
+matplotlib==3.3.1
+seaborn==0.11.0
+plotly==4.12.0
+
+streamlit==0.85.0
+
+scikit-learn==0.24.2
+tensorflow-cpu==2.6.0
+keras==2.6.0
