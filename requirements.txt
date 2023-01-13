@@ -9,3 +9,5 @@ streamlit==0.85.0
 scikit-learn==0.24.2
 tensorflow-cpu==2.6.0
 keras==2.6.0
+
+colorspacious==1.1.2
