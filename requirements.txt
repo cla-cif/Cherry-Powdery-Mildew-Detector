@@ -11,3 +11,4 @@ tensorflow-cpu==2.6.0
 keras==2.6.0
 
 colorspacious==1.1.2
+nb_black==1.0.7
