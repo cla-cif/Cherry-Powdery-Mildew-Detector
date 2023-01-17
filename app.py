@@ -8,7 +8,7 @@ from app_pages.page_powdery_mildew_detector import page_malaria_detector_body
 from app_pages.page_project_hypothesis import page_project_hypothesis_body
 from app_pages.page_ml_performance import page_ml_performance_metrics
 
-app = MultiPage(app_name="Malaria Detector")  # Create an instance of the app
+app = MultiPage(app_name="Detection of Cherry Powdery Mildew")  # Create an instance of the app
 
 # Add your app pages here using .add_page()
 app.add_page("Quick Project Summary", page_summary_body)
