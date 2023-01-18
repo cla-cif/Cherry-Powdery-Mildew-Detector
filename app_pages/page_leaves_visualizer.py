@@ -9,7 +9,7 @@ from matplotlib.image import imread
 import itertools
 import random
 
-def page_cells_visualizer_body():
+def page_leaves_visualizer_body():
     st.write("### Leaves Visualizer")
     st.info(
         f"* The client is interested in having a study that visually "
@@ -19,7 +19,7 @@ def page_cells_visualizer_body():
     if st.checkbox("Difference between average and variability image"):
       
       avg_powdery_mildew = plt.imread(f"outputs/{version}/avg_var_powdery_mildew.png")
-      avg_uninfected = plt.imread(f"outputs/{version}/avg_var_Uninfected.png")
+      avg_uninfected = plt.imread(f"outputs/{version}/avg_var_healthy.png")
 
       st.warning(
         f"* We notice the average and variability images did not show "

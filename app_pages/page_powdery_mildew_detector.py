@@ -10,7 +10,7 @@ from src.machine_learning.predictive_analysis import (
                                                     plot_predictions_probabilities
                                                     )
 
-def page_malaria_detector_body():
+def page_powdery_mildew_detector_body():
     st.info(
         f"* The client is interested in telling whether a given cherry leaf is affected by "
         f"powdery mildew or not."
