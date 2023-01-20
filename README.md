@@ -1,10 +1,14 @@
 ## Dataset Content
 ---
-The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The leaves are either healthy or infested by cherry powdery mildew a biothropic fungus.
+The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The images are taken from the client's crop fields and show leaves that are either healthy or infested by powdery mildew a biothropic fungus. This disease affects many plant species but the client is particularly concerned about their cherry plantation crop since bitter cherries are their flagship product. 
 
 ## Business Requirements
 ---
-We were requested by Mrs. Marianne McGuineys, head of IT and Innoviation at Farmy & Foods a company in the agricultural sector to develop a Machine Learning based system to detect instantly whether a certain cherry tree needs to be treated with a fungicide. The requested system should be capable of detecting instantly, using a tree leaf image, if it is healthy or has a powdery mildew. The system was requested by the Farmy & Food company to automate the detection process conducted manually thus far.
+We were requested by our client Farmy & Foods a company in the agricultural sector to develop a Machine Learning based system to detect instantly whether a certain cherry tree presents powderry mildew thus needs to be treated with a fungicide. 
+The requested system should be capable of detecting instantly, using a tree leaf image, whether it is healthy or needs attention. 
+The system was requested by the Farmy & Food company to automate the detection process conducted manually thus far. The company has thousands of cherry trees, located on multiple farms across the country. As a result, this manual process is not scalable due to the time spent in the manual process inspection.
+
+Summarizing:
 
 1. The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that contains powdery mildew.
 2. The client is interested in predicting if a cherry tree is healthy or contains powdery mildew.
@@ -12,7 +16,7 @@ We were requested by Mrs. Marianne McGuineys, head of IT and Innoviation at Farm
 ## Hypothesis and how to validate?
 ---
 Based on the cherry leaves database provided by Farmy & Foods, we suspect fungal infected leaves have clear marks/signs, typically on either leaf surface, differentiating them from uninfected leaves.
-An average image study can help to investigate it
+An average image study can help to investigate it.
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 ---
@@ -74,3 +78,38 @@ It will answer business requirement 1
 - Label Frequencies for Train, Validation and Test Sets
 - Model History - Accuracy and Losses
 - Model evaluation result
+
+## Unfixed Bug
+---
+## Deployment
+---
+### Heroku
+- The App live link is: https://YOUR_APP_NAME.herokuapp.com/
+- Set the runtime.txt Python version to a Heroku-20 stack currently supported version.
+- The project was deployed to Heroku using the following steps:</br>
+1. Log in to Heroku and create an App
+2. At the Deploy tab, select GitHub as the deployment method.
+3. Select your repository name and click Search. Once it is found, click Connect.
+4. Select the branch you want to deploy, then click Deploy Branch.
+5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
+6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+## Main Data Analysis and Machine Learning Libraries
+---
+where you should list the libraries you used in the project and provide a specific example on how you use these libraries. For example, if we consider the Churnometer project you may have listed that Seaborn is used
+to display a bar plot on the customer-based churn study to visualize churn levels.
+## Credits
+---
+In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
+You can break the credits section up into Content and Media, depending on what you have included in your project.
+### Content
+The text for the Home page was taken from Wikipedia Article A.
+Instructions on how to implement form validation on the Sign-Up page were taken from Specific YouTube Tutorial.
+The icons in the footer were taken from Font Awesome.
+### Media
+The photos used on the home and sign-up page are from This Open-Source site.
+The images used for the gallery page were taken from this other open-source site.
+
+## Acknowledgements (optional)
+---
+Thank the people that provided support throughout this project.
+---
