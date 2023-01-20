@@ -28,7 +28,7 @@ We will display the difference between an average infected leaf and an average h
 We will display an image montage for either infected or healthy leaves.
 
 ### Business Requirement 2: Classification
-
+INDICATE HOW THESE BUSINESS REQUIREMENTS WERE MET WITH A ML TASK (SAME AS ABOVE)
 We want to predict if a given leaf is infected, or not, with powdery mildew.
 We want to build a binary classifier and generate reports.
 
@@ -109,6 +109,12 @@ The icons in the footer were taken from Font Awesome.
 ### Media
 The photos used on the home and sign-up page are from This Open-Source site.
 The images used for the gallery page were taken from this other open-source site.
+
+You need to add a comment in your code to make clear the following:
+- The code you are using is not your original work.
+- The source location of the code you borrowed, usually indicated with a URL.
+For larger dependencies, also refer to the borrowed source in your README file with a short explanation of your intended use and a link to the source.
+For 3rd party libraries, refer to the borrowed source in your README file with a short explanation of your intended use and a link to the source.
 
 ## Acknowledgements (optional)
 ---
