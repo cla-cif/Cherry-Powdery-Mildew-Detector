@@ -36,6 +36,7 @@ We want to build a binary classifier and generate reports.
 ---
 
 ### Powdery Mildew classificator
+(TERMINOLOGY: labels, target, features, variables, attributes, train/fit, model output, model metrics, predictions... )</br>
 - We want an ML model to predict if a leaf is infected with powdery mildew or not, based on the image database provided by the Farmy & Foods company. It is a supervised model, a 2-class, single-label, classification model.
 - Our ideal outcome is to provide the farmers a faster and more reliable detector for powdery mildew detection.
 - The model success metrics are
