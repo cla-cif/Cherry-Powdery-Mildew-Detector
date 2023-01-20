@@ -1,30 +1,35 @@
 ## Dataset Content
+---
 The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The leaves are either healthy or infested by cherry powdery mildew a biothropic fungus.
 
 ## Business Requirements
+---
 We were requested by Mrs. Marianne McGuineys, head of IT and Innoviation at Farmy & Foods a company in the agricultural sector to develop a Machine Learning based system to detect instantly whether a certain cherry tree needs to be treated with a fungicide. The requested system should be capable of detecting instantly, using a tree leaf image, if it is healthy or has a powdery mildew. The system was requested by the Farmy & Food company to automate the detection process conducted manually thus far.
 
 1. The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that contains powdery mildew.
 2. The client is interested in predicting if a cherry tree is healthy or contains powdery mildew.
 
-### Hypothesis and how to validate?
+## Hypothesis and how to validate?
+---
 Based on the cherry leaves database provided by Farmy & Foods, we suspect fungal infected leaves have clear marks/signs, typically on either leaf surface, differentiating them from uninfected leaves.
 An average image study can help to investigate it
 
-### The rationale to map the business requirements to the Data Visualizations and ML tasks
+## The rationale to map the business requirements to the Data Visualizations and ML tasks
+---
 
-## Business Requirement 1: Data Visualization
+### Business Requirement 1: Data Visualization
 
 We will display the "mean" and "standard deviation" images for healthy and powdery mildew infected leaves.<\br>
 We will display the difference between an average infected leaf and an average healthy leaf.
 We will display an image montage for either infected or healthy leaves.
 
-## Business Requirement 2: Classification
+### Business Requirement 2: Classification
 
 We want to predict if a given leaf is infected, or not, with powdery mildew.
 We want to build a binary classifier and generate reports.
 
 ## ML Business Case
+---
 
 ### Powdery Mildew classificator
 - We want an ML model to predict if a leaf is infected with powdery mildew or not, based on the image database provided by the Farmy & Foods company. It is a supervised model, a 2-class, single-label, classification model.
@@ -36,6 +41,7 @@ We want to build a binary classifier and generate reports.
 - The training data to fit the model come from the leaves database provided by Farmy & Foody company and uploaded on Kaggle. This dataset contains 4208 images of cherry leaves. 
 
 ## Dashboard Design (Streamlit App User Interface)
+---
 ### Page 1: Quick Project Summary
 - Quick project summary
     - General Information:
