@@ -1,9 +1,9 @@
 ## Dataset Content
----
+
 The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The images are taken from the client's crop fields and show leaves that are either healthy or infested by powdery mildew a biothropic fungus. This disease affects many plant species but the client is particularly concerned about their cherry plantation crop since bitter cherries are their flagship product. 
 
 ## Business Requirements
----
+
 We were requested by our client Farmy & Foods a company in the agricultural sector to develop a Machine Learning based system to detect instantly whether a certain cherry tree presents powderry mildew thus needs to be treated with a fungicide. 
 The requested system should be capable of detecting instantly, using a tree leaf image, whether it is healthy or needs attention. 
 The system was requested by the Farmy & Food company to automate the detection process conducted manually thus far. The company has thousands of cherry trees, located on multiple farms across the country. As a result, this manual process is not scalable due to the time spent in the manual process inspection.
@@ -14,12 +14,11 @@ Summarizing:
 2. The client is interested in predicting if a cherry tree is healthy or contains powdery mildew.
 
 ## Hypothesis and how to validate?
----
+
 Based on the cherry leaves database provided by Farmy & Foods, we suspect fungal infected leaves have clear marks/signs, typically on either leaf surface, differentiating them from uninfected leaves.
 An average image study can help to investigate it.
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
----
 
 ### Business Requirement 1: Data Visualization
 
@@ -33,7 +32,6 @@ We want to predict if a given leaf is infected, or not, with powdery mildew.
 We want to build a binary classifier and generate reports.
 
 ## ML Business Case
----
 
 ### Powdery Mildew classificator
 (TERMINOLOGY: labels, target, features, variables, attributes, train/fit, model output, model metrics, predictions... )</br>
@@ -46,7 +44,7 @@ We want to build a binary classifier and generate reports.
 - The training data to fit the model come from the leaves database provided by Farmy & Foody company and uploaded on Kaggle. This dataset contains 4208 images of cherry leaves. 
 
 ## Dashboard Design (Streamlit App User Interface)
----
+
 ### Page 1: Quick Project Summary
 - Quick project summary
     - General Information:
@@ -81,9 +79,9 @@ It will answer business requirement 1
 - Model evaluation result
 
 ## Unfixed Bug
----
+
 ## Deployment
----
+
 ### Heroku
 - The App live link is: https://YOUR_APP_NAME.herokuapp.com/
 - Set the runtime.txt Python version to a Heroku-20 stack currently supported version.
@@ -95,28 +93,41 @@ It will answer business requirement 1
 5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
 6. If the slug size is too large then add large files not required for the app to the .slugignore file.
 ## Main Data Analysis and Machine Learning Libraries
----
-where you should list the libraries you used in the project and provide a specific example on how you use these libraries. For example, if we consider the Churnometer project you may have listed that Seaborn is used
-to display a bar plot on the customer-based churn study to visualize churn levels.
+
+List of ML libraries uses in this project:
+
+- numpy 1.19.2          used for 
+- pandas 1.1.2          used for 
+- matplotlib 3.3.1      used for 
+- seaborn 0.11.0        used for 
+- plotly 5.12.0         used for 
+- streamlit 0.85.0      used for 
+- scikit-learn 0.24.2   used for 
+- tensorflow-cpu 2.6.0  used for 
+- keras 2.6.0           used for 
+
 ## Credits
----
+
 In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
 You can break the credits section up into Content and Media, depending on what you have included in your project.
+
 ### Content
-The text for the Home page was taken from Wikipedia Article A.
-Instructions on how to implement form validation on the Sign-Up page were taken from Specific YouTube Tutorial.
-The icons in the footer were taken from Font Awesome.
+- The leaves dataset was linked from [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves) and created by [Code Institute](https://www.kaggle.com/codeinstitute)
+- The powdery mildew description was taken from [garden design](https://www.gardendesign.com/how-to/powdery-mildew.html) and [almanac](https://www.almanac.com/pest/powdery-mildew)
+- App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks were inspired by [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01)
+
 ### Media
 The photos used on the home and sign-up page are from This Open-Source site.
 The images used for the gallery page were taken from this other open-source site.
 
+### Code
 You need to add a comment in your code to make clear the following:
 - The code you are using is not your original work.
 - The source location of the code you borrowed, usually indicated with a URL.
 For larger dependencies, also refer to the borrowed source in your README file with a short explanation of your intended use and a link to the source.
 For 3rd party libraries, refer to the borrowed source in your README file with a short explanation of your intended use and a link to the source.
 
-## Acknowledgements (optional)
----
-Thank the people that provided support throughout this project.
----
+## Acknowledgements
+
+Thank to [Code Institute](https://codeinstitute.net/global/)
+
