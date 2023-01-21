@@ -7,6 +7,7 @@ The dataset contains 4208 featured photos of single cherry leaves against a neut
 We were requested by our client Farmy & Foods a company in the agricultural sector to develop a Machine Learning based system to detect instantly whether a certain cherry tree presents powderry mildew thus needs to be treated with a fungicide. 
 The requested system should be capable of detecting instantly, using a tree leaf image, whether it is healthy or needs attention. 
 The system was requested by the Farmy & Food company to automate the detection process conducted manually thus far. The company has thousands of cherry trees, located on multiple farms across the country. As a result, this manual process is not scalable due to the time spent in the manual process inspection.
+Link to the wiki section of this repo for the full [business interview](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/wiki/Business-understanding-interview). 
 
 Summarizing:
 

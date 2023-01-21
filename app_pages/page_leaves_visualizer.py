@@ -12,7 +12,7 @@ import random
 def page_leaves_visualizer_body():
     st.write("### Leaves Visualizer")
     st.info(
-        f"* The client is interested in having a study that visually "
+        f"The client is interested in having a study that visually "
         f"differentiates a cherry leaf affected by powdery mildew from a healthy one.")
     
     version = 'v1'
@@ -39,7 +39,7 @@ def page_leaves_visualizer_body():
           st.image(diff_between_avgs, caption='Difference between average images')
 
     if st.checkbox("Image Montage"): 
-      st.write("* To refresh the montage, click on the 'Create Montage' button")
+      st.write("To refresh the montage, click on the 'Create Montage' button")
       my_data_dir = 'inputs/cherryleaves_dataset/cherry-leaves'
       labels = os.listdir(my_data_dir+ '/validation')
       label_to_display = st.selectbox(label="Select label", options=labels, index=0)
