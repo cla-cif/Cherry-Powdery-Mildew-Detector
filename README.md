@@ -85,16 +85,26 @@ It will answer business requirement 1
 ### Heroku
 - The App live link is: https://YOUR_APP_NAME.herokuapp.com/
 - Set the runtime.txt Python version to a Heroku-20 stack currently supported version.
-- The project was deployed to Heroku using the following steps:</br>
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
-## Main Data Analysis and Machine Learning Libraries
+- The project was deployed to Heroku using the following steps:
+  1. Log in to Heroku and create an App
+  2. At the Deploy tab, select GitHub as the deployment method.
+  3. Select your repository name and click Search. Once it is found, click Connect.
+  4. Select the branch you want to deploy, then click Deploy Branch.
+  5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
+  6. If the slug size is too large then add large files not required for the app to the .slugignore file.
 
-List of ML libraries uses in this project:
+## Technologies used
+
+## Platforms
+- [Jupiter Notebook](https://jupyter.org/)
+- [Streamlit](https://streamlit.io/)
+- [Kaggle](https://www.kaggle.com/)
+
+## Languages
+- [Jupiter Notebook](https://jupyter.org/)
+- [Python](https://www.python.org/)
+- 
+### Main Data Analysis and Machine Learning Libraries
 
 - numpy 1.19.2          used for 
 - pandas 1.1.2          used for 
@@ -115,7 +125,8 @@ You can break the credits section up into Content and Media, depending on what y
 - The leaves dataset was linked from [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves) and created by [Code Institute](https://www.kaggle.com/codeinstitute)
 - The powdery mildew description was taken from [garden design](https://www.gardendesign.com/how-to/powdery-mildew.html) and [almanac](https://www.almanac.com/pest/powdery-mildew)
 - App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks were inspired by [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01)
-
+- The [CRISP DM](https://www.datascience-pm.com/crisp-dm-2/) steps adopted in the [GitHub project](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/projects?query=is%3Aopen) were modeled on [Zipporah Luna](https://medium.com/@zluna) articles on [Medium](https://medium.com/).
+  
 ### Media
 The photos used on the home and sign-up page are from This Open-Source site.
 The images used for the gallery page were taken from this other open-source site.
