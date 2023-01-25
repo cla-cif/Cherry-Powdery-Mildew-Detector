@@ -1,1 +1,4 @@
-/workspace/Detection-Cherry-Powdery-Mildew/inputs
+/inputs
+/test
+/train
+/validation
