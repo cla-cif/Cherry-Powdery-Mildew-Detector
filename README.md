@@ -126,7 +126,7 @@ You can break the credits section up into Content and Media, depending on what y
 - The leaves dataset was linked from [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves) and created by [Code Institute](https://www.kaggle.com/codeinstitute)
 - The powdery mildew description was taken from [garden design](https://www.gardendesign.com/how-to/powdery-mildew.html) and [almanac](https://www.almanac.com/pest/powdery-mildew)
 - App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks were inspired by [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01)
-- The [CRISP DM](https://www.datascience-pm.com/crisp-dm-2/) steps adopted in the [GitHub project](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/projects?query=is%3Aopen) were modeled on [Zipporah Luna](https://medium.com/@zluna) articles on [Medium](https://medium.com/).
+- The [CRISP DM](https://www.datascience-pm.com/crisp-dm-2/) steps adopted in the [GitHub project](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/projects?query=is%3Aopen) were modeled on [Introduction to CRISP-DM](https://www.ibm.com/docs/en/spss-modeler/saas?topic=guide-introduction-crisp-dm) articles from IBM.
   
 ### Media
 The photos used on the home and sign-up page are from This Open-Source site.
