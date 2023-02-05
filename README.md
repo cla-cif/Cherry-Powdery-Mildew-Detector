@@ -16,8 +16,12 @@ Summarizing:
 
 ## Hypothesis and how to validate?
 
-Based on the cherry leaves database provided by Farmy & Foods, we suspect fungal infected leaves have clear marks/signs, typically on either leaf surface, differentiating them from uninfected leaves.
-An average image study can help to investigate it.
+1. **Hypotes**: Based on the cherry leaves database provided by Farmy & Foods, we suspect fungal infected leaves have clear marks/signs, typically on either leaf surface, differentiating them from uninfected leaves. 
+   - __How to validate__: An average image study can help to investigate it.
+2. **Hypotesis**: Keep the number of parameters in a convolutional network as small as necessary without compromising the accuracy because deep networks are very computationally expensive to train.
+   -__How to validate__: 
+3. **Hypotesis**:
+
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 
