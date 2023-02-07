@@ -20,7 +20,13 @@ Summarizing:
    - __How to validate__: An average image study can help to investigate it.
 2. **Hypotesis**: Keep the number of parameters in a convolutional network as small as necessary without compromising the accuracy because deep networks are very computationally expensive to train.
    -__How to validate__: 
-3. **Hypotesis**:
+3. **Hypotesis**: A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
+   - __How to validate__: 
+     - The model performs well on the training dataset but not on the test dataset, in other words, the model is unable to capture the relationship between the imput examples and the target values. 
+     - An over simplified model fails to describe the target
+     - Low accuracy on training and test data occurs when the learning algorithm didn't hve enought data to learn from. 
+     - If "Accuracy" (measured against the training set) is very good and "Validation Accuracy" (measured against a validation set) is not as good, then your model is overfitting.
+     - You can combat overfitting by reducing the complexity of your model
 
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
