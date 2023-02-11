@@ -13,7 +13,7 @@ def page_ml_performance_metrics():
     labels_distribution = plt.imread(f"outputs/{version}/number_leaves_sets.png")
     st.image(labels_distribution, caption='Labels Distribution on Train, Validation and Test Sets')
 
-    st.info(
+    st.warning(
         f"The leaves dataset was divided into three subsets."
         f"Train set is the initial data used to 'fit' the model which will learn on this set how to generalize and make prediction on new unseen data."
         f"Validation set helps to improve the model performance by fine-tuning the model after each epoch (one complete pass of the training set through the model)."
@@ -25,7 +25,7 @@ def page_ml_performance_metrics():
     model_roc = plt.imread(f"outputs/{version}/roccurve.png")
     st.image(model_roc, caption='ROC Curve')
 
-    st.info(
+    st.warning(
         f"**ROC Curve**\n\n"
         f"ROC curve is a performance measurement."
         f"It tells how much the model is capable of distinguishing between classes by making accurate predictions."
@@ -36,7 +36,7 @@ def page_ml_performance_metrics():
     model_cm = plt.imread(f"outputs/{version}/confusion_matrix.png")
     st.image(model_cm, caption='Confusion Matrix')
 
-    st.info(
+    st.warning(
         f"**Confusion Matrix**\n\n"
         f"Confusion Matrix is a performance measurement for a classifier."
         f"It is a table with 4 different combinations of predicted and actual values."
@@ -44,10 +44,10 @@ def page_ml_performance_metrics():
         f"False Positive / False Negative: the prediction is opposite of reality (the leaf was predicted infected while it's actually healthy) "
         f"A good model is one which has high TP and TN rates, while low FP and FN rates.")
 
-    model_perf = plt.imread(f"outputs/{version}/model_training_acc.png")
+    model_perf = plt.imread(f"outputs/{version}/model_history.png")
     st.image(model_perf, caption='Model Performance')  
 
-    st.info(
+    st.warning(
         f"**Model Performance**\n\n"
         f"The Loss is the sum of errors made for each example in training (loss) or validation (val_loss) sets."
         f"Loss value implies how poorly or well a model behaves after each iteration of optimization."

@@ -58,8 +58,8 @@ def load_model_and_predict(my_image, version):
 
     target_map = {v: k for k, v in {'Healthy': 0, 'Infected': 1}.items()}
     
-    pred_class = target_map[pred_proba > 0.5]
-    if pred_class == target_map[0]:
+    pred_class = target_map[pred_proba < 0.5]
+    if pred_class == target_map[1]:
         pred_proba = 1 - pred_proba
 
     st.write(
