@@ -16,12 +16,27 @@ Summarizing:
 
 ## Hypothesis and how to validate?
 
-1. **Hypotes**: Based on the cherry leaves database provided by Farmy & Foods, we suspect fungal infected leaves have clear marks/signs, typically on either leaf surface, differentiating them from uninfected leaves. 
-   - __How to validate__: An average image study can help to investigate it.
-2. **Hypotesis**: Keep the number of parameters in a convolutional network as small as necessary without compromising the accuracy because deep networks are very computationally expensive to train.
-   -__How to validate__: 
+1. **Hypotes**: Infected leaves have clear marks differentiating them from the healthy leaves.
+   - __How to validate__: Research about the disease and build an average image study can help to investigate it.
+2. **Hypotesis**: ```softmax``` performs better than ```sigmoid``` as output function. 
+   -__How to validate__: Understand the kind of problem we are trying to solve and understand the differences between matemathical functions used to solve that class of problem. 
 3. **Hypotesis**: A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
-   - __How to validate__: 
+   - __How to validate__: Understand the concepts of overfitting and underfitting and how to steer away from them. 
+
+### Hypotesis 1
+> Infected leaves have clear marks differentiating them from the healthy leaves.
+
+We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. More is explained in the (Pacific Nortwest Pest Management Handbooks)[https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew]
+
+An Image Montage shows the evident difference between a healthy leaf and an infected one. 
+Average Image, Variability Image and Difference between Averages samples did not reveal any clear pattern to differentiate one from another.
+
+### Hypotesis 2
+> ```softmax``` performs better than ```sigmoid``` as output function. 
+
+### Hypotesis 3
+
+
      - The model performs well on the training dataset but not on the test dataset, in other words, the model is unable to capture the relationship between the imput examples and the target values. 
      - An over simplified model fails to describe the target
      - Low accuracy on training and test data occurs when the learning algorithm didn't hve enought data to learn from. 
