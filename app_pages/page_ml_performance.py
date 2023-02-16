@@ -8,16 +8,19 @@ from src.machine_learning.evaluate_clf import load_test_evaluation
 def page_ml_performance_metrics():
     version = 'v1'
 
-    st.write("### Train, Validation and Test Set: Labels Frequencies")
+    st.write("### Images distribution per set and label ")
 
     labels_distribution = plt.imread(f"outputs/{version}/number_leaves_sets.png")
     st.image(labels_distribution, caption='Labels Distribution on Train, Validation and Test Sets')
 
+    labels_distribution = plt.imread(f"outputs/{version}/sets_distribution_pie.png")
+    st.image(labels_distribution, caption='Sets distribution')
+
     st.warning(
         f"The leaves dataset was divided into three subsets."
-        f"Train set is the initial data used to 'fit' the model which will learn on this set how to generalize and make prediction on new unseen data."
-        f"Validation set helps to improve the model performance by fine-tuning the model after each epoch (one complete pass of the training set through the model)."
-        f"The test set informs us about the final accuracy of the model after completing the training phase. It's a batch of data the model has never seen.")
+        f"Train set (70% of the whole dataset) is the initial data used to 'fit' the model which will learn on this set how to generalize and make prediction on new unseen data."
+        f"Validation set (10% of the dataset) helps to improve the model performance by fine-tuning the model after each epoch (one complete pass of the training set through the model)."
+        f"The test set (20% of the dataset) informs us about the final accuracy of the model after completing the training phase. It's a batch of data the model has never seen.")
     st.write("---")
 
     st.write("### Model Performance")
