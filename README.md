@@ -14,35 +14,78 @@ Summarizing:
 1. The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that contains powdery mildew.
 2. The client is interested in predicting if a cherry tree is healthy or contains powdery mildew.
 
-## Hypothesis and how to validate?
+## Hypothesis and how to validate
 
 1. **Hypotes**: Infected leaves have clear marks differentiating them from the healthy leaves.
    - __How to validate__: Research about the disease and build an average image study can help to investigate it.
-2. **Hypotesis**: ```softmax``` performs better than ```sigmoid``` as output function. 
-   -__How to validate__: Understand the kind of problem we are trying to solve and understand the differences between matemathical functions used to solve that class of problem. 
-3. **Hypotesis**: A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
-   - __How to validate__: Understand the concepts of overfitting and underfitting and how to steer away from them. 
+2. **Hypotesis**: Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
+   -__How to validate__: Understand the kind of problem we are trying to solve and the differences between matemathical functions used to solve that class of problem.  Train and compare identical models changing only the activation function of the output layer. 
+3. **Hypotesis**: ```grayscale``` is better than ```RGB``` for image classification. 
+   - __How to validate__: Understand how colours are represented in tensors. Train and compare identical models changing only the image color.
+
+**WHY**A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
+Understand the concepts of overfitting and underfitting and how to steer away from them. 
 
 ### Hypotesis 1
 > Infected leaves have clear marks differentiating them from the healthy leaves.
 
-We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. More is explained in the (Pacific Nortwest Pest Management Handbooks)[https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew]
-
+We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. 
 An Image Montage shows the evident difference between a healthy leaf and an infected one. 
+
 Average Image, Variability Image and Difference between Averages samples did not reveal any clear pattern to differentiate one from another.
+![average variability between samples](/workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_var_powdery_mildew.png)
+
+Sources:
+[Pacific Nortwest Pest Management Handbooks](https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew)
 
 ### Hypotesis 2
-> ```softmax``` performs better than ```sigmoid``` as output function. 
+> Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
 
-### Hypotesis 3
+First of all let's understand the problem our model is asked to solve. The model is required to assign a cherry leaf one of the two categories: healthy/infected, which makes it a classification problem. It could be seen as a binary classification (healthy vs NOT healthy) or a multiclass classification where each output is assigned one and only one label from more than two classes (just two in our case: healthy vs infected).
+
+If the problem is seen as **binary classification** we will have 1 output node. The probability of the output belonging to one class or the other is within the range of 0 and 1 so if is <0.5 is considered class 0 (healthy) and if >=0.5 is considered class 1 (infected).<br />
+These constraints are given by the ```sigmoid``` function which is also called the _squashing_ function as the classes will converge either to 0 or 1. It's computationally effective but used for binary classification problems only as it suffers major drawbacks which include sharp damp gradients during backpropagation. <br /> 
+Backpropagation is where the “learning” or “adjustment” takes place in the neural network in order to adjust the weights of all the nodes throughout the layers of the network. The error value (distance between actual and predicted label) flows back through the network in the opposite direction as before, and it is then used in combination with the derivative of the Sigmoid function. <br />
+The derivative of a function will give us the angle/slope of the graph that the function describes. This value will let the network know weathe to increase or decrease the value of the individual weights in the layers of the network but for a very high or very low value of the error, the derivative of the sigmoid is very low (hence the _squashing_ effect).  
+
+If we see the problem as **multi class classification** we will have 2 output nodes (because I want to predict two classes healthy vs infected). In this case the ```softmax``` function is applied to the output layer. Like the previous case the output of this function lies in the range [0,1] but now we are looking at a probability distribution over the predicted classes which adds up to 1 with the target class having the highes probability. The probability distribution comes from normalizing the output for each class between 0 and 1 and divide by their sum. 
+
+In our case the ```softmax``` function performed better. 
 
 
-     - The model performs well on the training dataset but not on the test dataset, in other words, the model is unable to capture the relationship between the imput examples and the target values. 
-     - An over simplified model fails to describe the target
-     - Low accuracy on training and test data occurs when the learning algorithm didn't hve enought data to learn from. 
-     - If "Accuracy" (measured against the training set) is very good and "Validation Accuracy" (measured against a validation set) is not as good, then your model is overfitting.
-     - You can combat overfitting by reducing the complexity of your model
+Sources:
+- [Activation Functions Compared With Experiments](https://wandb.ai/shweta/Activation%20Functions/reports/Activation-Functions-Compared-With-Experiments--VmlldzoxMDQwOTQ) by [Sweta Shaw](https://wandb.ai/shweta)
+- [Backpropagation in Fully Convolutional Networks](https://towardsdatascience.com/backpropagation-in-fully-convolutional-networks-fcns-1a13b75fb56a#:~:text=Backpropagation%20is%20one%20of%20the,respond%20properly%20to%20future%20urges.) by [Giuseppe Pio Cannata](https://cannydatascience.medium.com/)
+- [Understanding The Derivative Of The Sigmoid Function](https://towardsdatascience.com/understanding-the-derivative-of-the-sigmoid-function-cbfd46fb3716#:~:text=The%20Sigmoid%20function%20is%20often,of%20the%20network%20or%20not.) by [Jacob Toftgaard Rasmussen](https://jacobtoftgaardrasmussen.medium.com/)
+- [Activation Functions: Comparison of Trends in Practice and Research for Deep Learning](https://arxiv.org/pdf/1811.03378.pdf) by _Chigozie Enyinna Nwankpa, Winifred Ijomah, Anthony Gachagan, and Stephen Marshall_
 
+
+### Hypotesis 3 
+>```grayscale``` is better than ```RGB``` for image classification. 
+
+An image is made of pixels.Every image has three main properties:
+- Size — This is the height and width of an image. It can be represented in centimeters, inches or even in pixels.
+- Color space — Examples are RGB and HSV color spaces.
+- Channel — This is an attribute of the color space. For example, RGB color space has three types of colors or attributes known as Red, Green and Blue (hence the name RGB).
+
+In an RGB image where there are three color channels, a pixel value has three numbers, each ranging from 0 to 255 (both inclusive). For example, the number 0 of a pixel in the red channel means that there is no red color in the pixel while the number 255 means that there is 100% red color in the pixel. A single RGB image can be represented using a three-dimensional (3D) NumPy array or a tensor.<br />
+In a grayscale image where there is only one channel, a pixel value has just a single number ranging from 0 to 255 (both inclusive). The pixel value 0 represents black and the pixel value 255 represents white. Therefore a single grayscale image can be represented using a two-dimensional (2D) NumPy array or a tensor because it doesn't need an extra dimension for the color channel. <br />
+Feeding a model with an RGB image or convert that image to grayscale, depends on the nature of the images and the information conveyd by the colour. 
+If the color has no significance in the image to classify, indeed a grayscale image requires less computational power to process.
+The same CNN applied to an RGB image dataset has _______________ parameters to train compared to 3,714,658 parameters when the same dataset is converted to grayscale. 
+
+- Comparison of the same image
+  
+- Comparison of LSTM 
+
+- Overall accuracy
+
+In our case ____________ performed better. 
+
+
+Sources:
+- [How RGB and Grayscale Images Are Represented in NumPy Arrays](https://towardsdatascience.com/exploring-the-mnist-digits-dataset-7ff62631766a) by [Rukshan Pramoditha](https://rukshanpramoditha.medium.com/)
+- 
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 
