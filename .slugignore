@@ -2,5 +2,5 @@ inputs/cherryleaves_dataset/cherry-leaves/train/powdery_mildew
 inputs/cherryleaves_dataset/cherry-leaves/train/healthy
 inputs/cherryleaves_dataset/cherry-leaves/test/powdery_mildew
 inputs/cherryleaves_dataset/cherry-leaves/test/healthy
-
+readme_images/
 outputs/alfa

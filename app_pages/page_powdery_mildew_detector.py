@@ -12,13 +12,11 @@ from src.machine_learning.predictive_analysis import (
 
 def page_powdery_mildew_detector_body():
     st.info(
-        f"The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not. "
+        f"The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not and obtaining a donwnloadable report of the examined leaves."
         )
 
     st.write(
-        f"You can download a set of infected and healthy leaves for live prediction. "
-        f"You can download the images from [here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)."
-        )
+        f"You can download a set of infected and healthy leaves for live prediction from [here](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves).")
 
     st.write("---")
     
@@ -48,5 +46,9 @@ def page_powdery_mildew_detector_body():
             st.success("Analysis Report")
             st.table(df_report)
             st.markdown(download_dataframe_as_csv(df_report), unsafe_allow_html=True)
+
+    st.write(
+        f"For additional information, please visit and **read** the "
+        f"[Project README file](https://github.com/cla-cif/Detection-Cherry-Powdery-Mildew#readme).")
 
 

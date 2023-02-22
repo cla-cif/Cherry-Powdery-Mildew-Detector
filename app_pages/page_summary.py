@@ -27,7 +27,8 @@ def page_summary_body():
     st.success(
         f"The project has two business requirements:\n\n"
         f"1 - The client is interested in having a study to visually differentiate a healthy from an infected leaf.\n\n"
-        f"2 - The client is interested in telling whether a given leaf is infected by powdery mildew or not. "
+        f"2 - The client is interested in telling whether a given leaf is infected by powdery mildew or not. \n\n"
+        f"3 - The client is interested in obtaining a prediction report of the examined leaves."
         )
 
     st.write(

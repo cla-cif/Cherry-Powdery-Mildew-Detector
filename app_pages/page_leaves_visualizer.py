@@ -22,19 +22,19 @@ def page_leaves_visualizer_body():
       avg_uninfected = plt.imread(f"outputs/{version}/avg_var_healthy.png")
 
       st.warning(
-        f"* We notice the average and variability images did not show "
+        f"We notice the average and variability images did not show "
         f"patterns where we could intuitively differentiate one from another. " 
-        f"However, a small difference in the colour pigment of the average images is seen for both labels.")
+        f"However, mildew affected leaves show more white stipes on the center.")
 
       st.image(avg_powdery_mildew, caption='Affected leaf - Average and Variability')
       st.image(avg_uninfected, caption='healthy leaf - Average and Variability')
       st.write("---")
 
-    if st.checkbox("Differences between average parasitised and average healthy leaves"):
+    if st.checkbox("Differences between average infected and average healthy leaves"):
           diff_between_avgs = plt.imread(f"outputs/{version}/avg_diff.png")
 
           st.warning(
-            f"* We notice this study didn't show "
+            f"We notice this study didn't show "
             f"patterns where we could intuitively differentiate one from another.")
           st.image(diff_between_avgs, caption='Difference between average images')
 
@@ -95,3 +95,7 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15,10)):
   else:
     print("The label you selected doesn't exist.")
     print(f"The existing options are: {labels}")
+
+    st.write(
+        f"For additional information, please visit and **read** the "
+        f"[Project README file](https://github.com/cla-cif/Detection-Cherry-Powdery-Mildew#readme).")

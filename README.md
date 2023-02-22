@@ -13,6 +13,7 @@ Summarizing:
 
 1. The client is interested in conducting a study to visually differentiate a cherry leaf that is healthy from one that contains powdery mildew.
 2. The client is interested in predicting if a cherry tree is healthy or contains powdery mildew.
+3. The client is interested in obtaining a prediction report of the examined leaves. 
 
 ## Hypothesis and how to validate
 
@@ -22,7 +23,7 @@ Summarizing:
 2. **Hypotesis**: Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
    - __How to validate__: Understand the kind of problem we are trying to solve and the differences between matemathical functions used to solve that class of problem. Train and compare identical models changing only the activation function of the output layer. <br/><br/>
 
-3. **Hypotesis**: ```grayscale``` is better than ```RGB``` for image classification. 
+3. **Hypotesis**: Converting ```RGB``` images to ```grayscale``` improves image classification performance.  
    - __How to validate__: Understand how colours are represented in tensors. Train and compare identical models changing only the image color.
 
 **WHY**A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
@@ -34,17 +35,22 @@ Understand the concepts of overfitting and underfitting and how to steer away fr
 We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. 
 An Image Montage shows the evident difference between a healthy leaf and an infected one. 
 
-Average Image, Variability Image and Difference between Averages samples did not reveal any clear pattern to differentiate one from another.
+Difference between average and variability images shows that affected leaves present more white stipes on the center.
 ![average variability between samples](/workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_var_powdery_mildew.png)
+While image difference between average infectead and average infected leaves shows no intuitive difference. 
+![average variability between samples](workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_diff.png)
 
 Sources:
 [Pacific Nortwest Pest Management Handbooks](https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew)
 
 ### Hypotesis 2
 > Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
-1. Introduction<br/>
 
-First of all let's understand the problem our model is asked to solve. The model is required to assign a cherry leaf one of the two categories: healthy/infected, which makes it a classification problem. It could be seen as a binary classification (healthy vs NOT healthy) or a multiclass classification where each output is assigned one and only one label from more than two classes (just two in our case: healthy vs infected).
+**1. Introduction<br/>**
+   1. Understand problem and function
+
+First of all let's understand the problem our model is asked to solve. The model is required to assign a cherry leaf one of the two categories: healthy/infected, which makes it a classification problem. It could be seen as a bi
+nary classification (healthy vs NOT healthy) or a multiclass classification where each output is assigned one and only one label from more than two classes (just two in our case: healthy vs infected).
 
 If the problem is seen as **binary classification** we will have 1 output node. The probability of the output belonging to one class or the other is within the range of 0 and 1 so if is <0.5 is considered class 0 (healthy) and if >=0.5 is considered class 1 (infected).<br/>
 These constraints are given by the ```sigmoid``` function which is also called the _squashing_ function as the classes will converge either to 0 or 1. It's computationally effective but used for binary classification problems only as it suffers major drawbacks which include sharp damp gradients during backpropagation. <br/> 
@@ -53,7 +59,28 @@ The derivative of a function will give us the angle/slope of the graph that the 
 
 If we see the problem as **multi class classification** we will have 2 output nodes (because I want to predict two classes healthy vs infected). In this case the ```softmax``` function is applied to the output layer. Like the previous case the output of this function lies in the range [0,1] but now we are looking at a probability distribution over the predicted classes which adds up to 1 with the target class having the highes probability. The probability distribution comes from normalizing the output for each class between 0 and 1 and divide by their sum. 
 
+   2. Understand how to evaluate the performance
+   
+A learning curve is a plot of model learning performance over experience or time.
+Learning curves are a widely used diagnostic tool in machine learning for algorithms that learn from a training dataset incrementally. The model can be evaluated on the training dataset and on a hold out validation dataset after each update during training and plots of the measured performance can created to show learning curves.
+Reviewing learning curves of models during training can be used to diagnose problems with learning, such as an underfit or overfit model, as well as whether the training and validation datasets are suitably representative. <br/>
+Generally, a learning curve is a plot that shows time or experience on the x-axis (Epoch) and learning or improvement on the y-axis (Loss/Accuracy).
+   -  **Epoch**: refers to the one entire passing of training data through the algorithm. 
+   -  **Loss**: Loss is the penalty for a bad prediction. That is, loss is a number indicating how bad the model's prediction was on a single example. If the model's prediction is perfect, the loss is zero; otherwise, the loss is greater. In our case loss on training set was evaluated against loss on validation set.
+   -  **Accuracy**: Accuracy is the fraction of predictions our model got right. Again accuracy on the training swt was measured against accuracy on the validation set. 
+
+In our plot we will be looking for a *good fit* of the learning algorithm which exists between an overfit and underfit model
+A good fit is identified by a training and validation loss that decreases to a point of stability with a minimal gap between the two final loss/accuracy values.
+We should expect some gap between the train and validation loss/accuracy learning curves. This gap is referred to as the “generalization gap.”
+A plot of learning curves shows a good fit if:
+   -  The plot of training loss decreases (or increases if it's an accuracy plot) to a point of stability.
+   -  The plot of validation loss decreases/increases to a point of stability and has a small gap with the training loss.
+   -  Continued training of a good fit will likely lead to an overfit (That's why ML moldels usually have a (early stopping)[https://en.wikipedia.org/wiki/Early_stopping] which interrupts the model's learning phase when it stops to improve.)
+  
 **2. Observation<br/>**
+The model was set to train only on 32 Epoch with no early stoppings, just for the purpose of this hypotesis, and shows overfitting around the 10 last epochs as expected.
+The same hyperparameters were set for both examples. 
+The model trained using ```softmax``` showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using ```sigmoid```. 
 
 **3. Conclusion<br/>**
 In our case the ```softmax``` function performed better. 
@@ -63,26 +90,31 @@ Sources:
 - [Backpropagation in Fully Convolutional Networks](https://towardsdatascience.com/backpropagation-in-fully-convolutional-networks-fcns-1a13b75fb56a#:~:text=Backpropagation%20is%20one%20of%20the,respond%20properly%20to%20future%20urges.) by [Giuseppe Pio Cannata](https://cannydatascience.medium.com/)
 - [Understanding The Derivative Of The Sigmoid Function](https://towardsdatascience.com/understanding-the-derivative-of-the-sigmoid-function-cbfd46fb3716#:~:text=The%20Sigmoid%20function%20is%20often,of%20the%20network%20or%20not.) by [Jacob Toftgaard Rasmussen](https://jacobtoftgaardrasmussen.medium.com/)
 - [Activation Functions: Comparison of Trends in Practice and Research for Deep Learning](https://arxiv.org/pdf/1811.03378.pdf) by *Chigozie Enyinna Nwankpa, Winifred Ijomah, Anthony Gachagan, and Stephen Marshall*
+- [How to use Learning Curves to Diagnose Machine Learning Model Performance](https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/)
 
 
 ### Hypotesis 3 
->```grayscale``` is better than ```RGB``` for image classification. 
+> Converting ```RGB``` images to ```grayscale``` improves image classification performance. 
 
 **1. Introduction <br/>**
 
-An image is made of pixels.Every image has three main properties:
+Digital images are made of pixels, every image has three main properties:
    - Size — This is the height and width of an image. It can be represented in centimeters, inches or even in pixels.
    - Color space — Examples are RGB and HSV color spaces.
-   - Channel — This is an attribute of the color space. For example, RGB color space has three types of colors or attributes known as Red, Green and Blue (hence the name RGB).
+   - Channel — This is an attribute of the color space. 
+  
+Each pixel of a coloured image is made of combinations of primary colors represented by a series of code. RGB color space has three types of colors or attributes known as Red, Green and Blue (hence the name RGB).
+A grayscale image is one in which the value of each pixel is a single sample representing only an amount of light; that is, it carries only intensity information. Grayscale images, a kind of black-and-white or gray monochrome, are composed exclusively of shades of gray.
 
 In an RGB image where there are three color channels, a pixel value has three numbers, each ranging from 0 to 255 (both inclusive). For example, the number 0 of a pixel in the red channel means that there is no red color in the pixel while the number 255 means that there is 100% red color in the pixel. A single RGB image can be represented using a three-dimensional (3D) NumPy array or a tensor.<br />
 In a grayscale image where there is only one channel, a pixel value has just a single number ranging from 0 to 255 (both inclusive). The pixel value 0 represents black and the pixel value 255 represents white. Therefore a single grayscale image can be represented using a two-dimensional (2D) NumPy array or a tensor because it doesn't need an extra dimension for the color channel. <br />
 Feeding a model with an RGB image or convert that image to grayscale, depends on the nature of the images and the information conveyd by the colour. 
-If the color has no significance in the image to classify, indeed a grayscale image requires less computational power to process.<br/><br/>
+If the color has no significance in the image to classify, indeed a grayscale image requires less computational power to be processed.<br/><br/>
 
 **2. Observation<br/>**
-
-Both models were trained on the same CNN over 32 epochs. 
+The model was set to train only on 32 Epoch with no early stoppings, just for the purpose of this hypotesis, and shows overfitting around the 10 last epochs as expected.
+The same hyperparameters were set for both examples. 
+The model trained using RGB images showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using Grayscale images. 
 The same CNN applied to an RGB image dataset has 3,715,234 parameters to train compared to 3,714,658 parameters when the same dataset is converted to grayscale. 
 
    - Comparison of the same image
@@ -90,34 +122,41 @@ The same CNN applied to an RGB image dataset has 3,715,234 parameters to train c
    - Comparison of LSTM 
 
 **3. Conclusion<br/>**
-   
 Keeping the colour information performed better. The plot shows lower loss and more consistent accuracy. A difference of 676 trainable parameters has no significant benefit on the computational cost. 
-
 
 Sources:
 - [How RGB and Grayscale Images Are Represented in NumPy Arrays](https://towardsdatascience.com/exploring-the-mnist-digits-dataset-7ff62631766a) by [Rukshan Pramoditha](https://rukshanpramoditha.medium.com/)
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 
-### Business Requirement 1: Data Visualization
+### Business Requirement 1: Data Visualization 
+>The client is interested in having a study that visually differentiates a cherry leaf affected by powdery mildew from a healthy one.
 
-We will display the "mean" and "standard deviation" images for healthy and powdery mildew infected leaves.<br/>
-We will display the difference between an average infected leaf and an average healthy leaf.
-We will display an image montage for either infected or healthy leaves.
+The study is presented in the dashboard which displays:
+
+-  The difference between an average infected leaf and an average healthy leaf.
+-  The "mean" and "standard deviation" images for healthy and powdery mildew infected leaves 
+-  Image montage for either infected or healthy leaves.
+[See hypotesis 1 for more information])(#Hypotesis 1)
+![]()
 
 ### Business Requirement 2: Classification
-INDICATE HOW THESE BUSINESS REQUIREMENTS WERE MET WITH A ML TASK (SAME AS ABOVE)
-We want to predict if a given leaf is infected, or not, with powdery mildew.
-We want to build a binary classifier and generate reports.
+>The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not.
+
+The client can upload from the dashboard cherry leaves images in ```.jpeg``` format up to 200MB obtaining immediate feedback on each leaf. The User Interface of the dashboard with a file uploader widget. The user should upload multiple powdery mildew leaf images. It will display the image and a prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
+
+### Business Requirement 3: Report
+>The client is interested in obtaining a prediction report of the examined leaves. 
+
+Following each batch of uploaded images a downloadable ```.csv``` report is available with the predicted status. 
 
 ## ML Business Case
 
 ### Powdery Mildew classificator
-(TERMINOLOGY: labels, target, features, variables, attributes, train/fit, model output, model metrics, predictions... )</br>
-- We want an ML model to predict if a leaf is infected with powdery mildew or not, based on the image database provided by the Farmy & Foods company. It is a supervised model, a 2-class, single-label, classification model.
+- We want an ML model to predict if a leaf is infected with powdery mildew or not, based on the image database provided by the Farmy & Foods company. The problem can be understood as supervised learning, a two/multi-class, single-label, classification model.
 - Our ideal outcome is to provide the farmers a faster and more reliable detector for powdery mildew detection.
 - The model success metrics are
-    - Accuracy of 65% or above on the test set.
+    - Accuracy of 87% or above on the test set.
 - The model output is defined as a flag, indicating if the leaf has powdery mildew or not and the associated probability of being infected or not. The farmers will take a picture of a leaf and upload it to the App. The prediction is made on the fly (not in batches).
 - Heuristics: The current detection method is based on a manual inspection. A farmer spends around 30 minutes in each tree, taking a few samples of tree leaves and verifying visually if the leaf tree is healthy or has powdery mildew. Vusual criteria is slow and it leaves room to procduce inaccurate diagnostics due to human error. 
 - The training data to fit the model come from the leaves database provided by Farmy & Foody company and uploaded on Kaggle. This dataset contains 4208 images of cherry leaves. 
@@ -131,10 +170,11 @@ We want to build a binary classifier and generate reports.
         - Visual criteria used to detect infected leaves are light-green, circular lesion on either leaf surface and later on a subtle white cotton-like growth develops in the infected area on either leaf surface and on the fruits thus reducing yeld and quality."
 - Project Dataset
 The available dataset provided by Farmy & Foody contains 4208 featured photos of single cherry leaves against a neutral background. The leaves are either healthy or infested by cherry powdery mildew.
-Link to additional information
 - Business requirements:
     1. The client is interested to have a study to visually differentiate between a parasite-contained and uninfected leaf.
     2. The client is interested in telling whether a given leaf contains a powdery mildew parasite or not.
+    3. The client is interested in obtaining a prediction report of the examined leaves. 
+- Link to this Readme.md file for additional information about the project. 
 
 ### Page 2: leaves Visualizer
 It will answer business requirement 1
@@ -143,11 +183,11 @@ It will answer business requirement 1
 - Checkbox 3 - Image Montage
 
 ### Page 3: Powdery mildew Detector
-- Business requirement 2 information - "The client is interested in telling whether a given leaf contains a powdery mildew parasite or not."
+- Business requirement #2 and #3 information - "The client is interested in telling whether a given leaf is infected with powdery mildew or not and obtaining a donwnloadable report of the examined leaves."
 - Link to download a set of parasite-contained and uninfected leaf images for live prediction on [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)
 - User Interface with a file uploader widget. The user should upload multiple powdery mildew leaf images. It will display the image and a prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
 - Table with the image name and prediction results.
-- Download button to download table.
+- Download button to download the report.
 
 ### Page 4: Project Hypothesis and Validation
 - Block for each project hypothesis, describe the conclusion and how you validated it.
