@@ -1,3 +1,18 @@
+![Banner]()
+
+## Table of Contents
+1. [Dataset Content](#dataset-content)
+2. [Business Requirements](#business-requirements)
+3. [Hypotesis and validation](#hypotesis-and-validation)
+4. [Implementation of the Business Requirements](#the-rationale-to-map-the-business-requirements-to-the-data-visualizations-and-ml-tasks)
+5. [ML Business case](#ml-business-case)
+6. [Dashboard design](#dashboard-design-streamlit-app-user-interface)
+7. [CRISP DM Process](#the-process-of-cross-industry-standard-process-for-data-mining)
+8. [Bugs](#bugs)
+9. [Deployment](#deployment)
+10. [Technologies used](#technologies-used)
+11. [Credits](#credits)
+
 ## Dataset Content
 
 The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The images are taken from the client's crop fields and show leaves that are either healthy or infested by powdery mildew a biothropic fungus. This disease affects many plant species but the client is particularly concerned about their cherry plantation crop since bitter cherries are their flagship product. 
@@ -15,10 +30,10 @@ Summarizing:
 2. The client is interested in predicting if a cherry tree is healthy or contains powdery mildew.
 3. The client is interested in obtaining a prediction report of the examined leaves. 
 
-## Hypothesis and how to validate
+## Hypothesis and validation
 
 1. **Hypotes**: Infected leaves have clear marks differentiating them from the healthy leaves.
-   - __How to validate__: Research about the disease and build an average image study can help to investigate it. <br/><br/>
+   - __How to validate__: Research about the disease and build an average image study can help to investigate it.<br/><br/>
 
 2. **Hypotesis**: Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
    - __How to validate__: Understand the kind of problem we are trying to solve and the differences between matemathical functions used to solve that class of problem. Train and compare identical models changing only the activation function of the output layer. <br/><br/>
@@ -36,18 +51,23 @@ We suspect cherry leaves affected by powdery mildew have clear marks, typically 
 An Image Montage shows the evident difference between a healthy leaf and an infected one. 
 
 Difference between average and variability images shows that affected leaves present more white stipes on the center.
+
 ![average variability between samples](/workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_var_powdery_mildew.png)
 While image difference between average infectead and average infected leaves shows no intuitive difference. 
+
 ![average variability between samples](workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_diff.png)
 
-Sources:
-[Pacific Nortwest Pest Management Handbooks](https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew)
+**Sources**:
 
+- [Pacific Nortwest Pest Management Handbooks](https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew)
+
+---
 ### Hypotesis 2
 > Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
 
-**1. Introduction<br/>**
-   1. Understand problem and function
+**1. Introduction**
+
+   1. Understand problem and mathematical functions
 
 First of all let's understand the problem our model is asked to solve. The model is required to assign a cherry leaf one of the two categories: healthy/infected, which makes it a classification problem. It could be seen as a bi
 nary classification (healthy vs NOT healthy) or a multiclass classification where each output is assigned one and only one label from more than two classes (just two in our case: healthy vs infected).
@@ -75,28 +95,30 @@ We should expect some gap between the train and validation loss/accuracy learnin
 A plot of learning curves shows a good fit if:
    -  The plot of training loss decreases (or increases if it's an accuracy plot) to a point of stability.
    -  The plot of validation loss decreases/increases to a point of stability and has a small gap with the training loss.
-   -  Continued training of a good fit will likely lead to an overfit (That's why ML moldels usually have a (early stopping)[https://en.wikipedia.org/wiki/Early_stopping] which interrupts the model's learning phase when it stops to improve.)
+   -  Continued training of a good fit will likely lead to an overfit (That's why ML moldels usually have a [early stopping](https://en.wikipedia.org/wiki/Early_stopping) which interrupts the model's learning phase when it stops to improve).
   
-**2. Observation<br/>**
+**2. Observation**
+
 The model was set to train only on 32 Epoch with no early stoppings, just for the purpose of this hypotesis, and shows overfitting around the 10 last epochs as expected.
 The same hyperparameters were set for both examples. 
 The model trained using ```softmax``` showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using ```sigmoid```. 
 
-**3. Conclusion<br/>**
+**3. Conclusion**
+
 In our case the ```softmax``` function performed better. 
 
-Sources:
+**Sources**:
 - [Activation Functions Compared With Experiments](https://wandb.ai/shweta/Activation%20Functions/reports/Activation-Functions-Compared-With-Experiments--VmlldzoxMDQwOTQ) by [Sweta Shaw](https://wandb.ai/shweta)
 - [Backpropagation in Fully Convolutional Networks](https://towardsdatascience.com/backpropagation-in-fully-convolutional-networks-fcns-1a13b75fb56a#:~:text=Backpropagation%20is%20one%20of%20the,respond%20properly%20to%20future%20urges.) by [Giuseppe Pio Cannata](https://cannydatascience.medium.com/)
 - [Understanding The Derivative Of The Sigmoid Function](https://towardsdatascience.com/understanding-the-derivative-of-the-sigmoid-function-cbfd46fb3716#:~:text=The%20Sigmoid%20function%20is%20often,of%20the%20network%20or%20not.) by [Jacob Toftgaard Rasmussen](https://jacobtoftgaardrasmussen.medium.com/)
 - [Activation Functions: Comparison of Trends in Practice and Research for Deep Learning](https://arxiv.org/pdf/1811.03378.pdf) by *Chigozie Enyinna Nwankpa, Winifred Ijomah, Anthony Gachagan, and Stephen Marshall*
-- [How to use Learning Curves to Diagnose Machine Learning Model Performance](https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/)
+- [How to use Learning Curves to Diagnose Machine Learning Model Performance](https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/) by [Jason Brownlee](https://machinelearningmastery.com/about)
 
-
+---
 ### Hypotesis 3 
 > Converting ```RGB``` images to ```grayscale``` improves image classification performance. 
 
-**1. Introduction <br/>**
+**1. Introduction**
 
 Digital images are made of pixels, every image has three main properties:
    - Size — This is the height and width of an image. It can be represented in centimeters, inches or even in pixels.
@@ -106,12 +128,13 @@ Digital images are made of pixels, every image has three main properties:
 Each pixel of a coloured image is made of combinations of primary colors represented by a series of code. RGB color space has three types of colors or attributes known as Red, Green and Blue (hence the name RGB).
 A grayscale image is one in which the value of each pixel is a single sample representing only an amount of light; that is, it carries only intensity information. Grayscale images, a kind of black-and-white or gray monochrome, are composed exclusively of shades of gray.
 
-In an RGB image where there are three color channels, a pixel value has three numbers, each ranging from 0 to 255 (both inclusive). For example, the number 0 of a pixel in the red channel means that there is no red color in the pixel while the number 255 means that there is 100% red color in the pixel. A single RGB image can be represented using a three-dimensional (3D) NumPy array or a tensor.<br />
-In a grayscale image where there is only one channel, a pixel value has just a single number ranging from 0 to 255 (both inclusive). The pixel value 0 represents black and the pixel value 255 represents white. Therefore a single grayscale image can be represented using a two-dimensional (2D) NumPy array or a tensor because it doesn't need an extra dimension for the color channel. <br />
+In an RGB image where there are three color channels, a pixel value has three numbers, each ranging from 0 to 255 (both inclusive). For example, the number 0 of a pixel in the red channel means that there is no red color in the pixel while the number 255 means that there is 100% red color in the pixel. A single RGB image can be represented using a three-dimensional (3D) NumPy array or a tensor.<br/>
+In a grayscale image where there is only one channel, a pixel value has just a single number ranging from 0 to 255 (both inclusive). The pixel value 0 represents black and the pixel value 255 represents white. Therefore a single grayscale image can be represented using a two-dimensional (2D) NumPy array or a tensor because it doesn't need an extra dimension for the color channel. <br/>
 Feeding a model with an RGB image or convert that image to grayscale, depends on the nature of the images and the information conveyd by the colour. 
 If the color has no significance in the image to classify, indeed a grayscale image requires less computational power to be processed.<br/><br/>
 
-**2. Observation<br/>**
+**2. Observation**
+
 The model was set to train only on 32 Epoch with no early stoppings, just for the purpose of this hypotesis, and shows overfitting around the 10 last epochs as expected.
 The same hyperparameters were set for both examples. 
 The model trained using RGB images showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using Grayscale images. 
@@ -121,7 +144,8 @@ The same CNN applied to an RGB image dataset has 3,715,234 parameters to train c
   
    - Comparison of LSTM 
 
-**3. Conclusion<br/>**
+**3. Conclusion**
+
 Keeping the colour information performed better. The plot shows lower loss and more consistent accuracy. A difference of 676 trainable parameters has no significant benefit on the computational cost. 
 
 Sources:
@@ -177,25 +201,60 @@ The available dataset provided by Farmy & Foody contains 4208 featured photos of
 - Link to this Readme.md file for additional information about the project. 
 
 ### Page 2: leaves Visualizer
-It will answer business requirement 1
+It will answer business requirement #1
 - Checkbox 1 - Difference between average and variability image
 - Checkbox 2 - Differences between average parasitised and average uninfected leaves
 - Checkbox 3 - Image Montage
+- Link to this Readme.md file for additional information about the project. 
 
 ### Page 3: Powdery mildew Detector
 - Business requirement #2 and #3 information - "The client is interested in telling whether a given leaf is infected with powdery mildew or not and obtaining a donwnloadable report of the examined leaves."
 - Link to download a set of parasite-contained and uninfected leaf images for live prediction on [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves)
-- User Interface with a file uploader widget. The user should upload multiple powdery mildew leaf images. It will display the image and a prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
+- User Interface with a file uploader widget. The user can upload multiple cherry leaves images. It will display the image, a barplot of the visual representation of the prediction and the prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
 - Table with the image name and prediction results.
-- Download button to download the report.
-
+- Download button to download the report in a ```.csv``` format. 
+- Link to this Readme.md file for additional information about the project. 
+  
 ### Page 4: Project Hypothesis and Validation
-- Block for each project hypothesis, describe the conclusion and how you validated it.
+- Block for each project hypothesis including statement, explaination, validation and conclusion. See [Hypotesis and validation](#Hypothesis-and-validation)
+- Link to this Readme.md file for additional information about the project. 
 
 ### Page 5: ML Performance Metrics
 - Label Frequencies for Train, Validation and Test Sets
-- Model History - Accuracy and Losses
-- Model evaluation result
+- Dataset percentage distribution among the three sets
+- Model performance - ROC curve
+- Model accuracy - Confusion matrix
+- Model History - Accuracy and Losses of LSTM Model
+- Model evaluation result on Test set
+
+## The process of Cross-industry standard process for data mining
+CRISP-DM, which stands for Cross-Industry Standard Process for Data Mining, is an industry-proven way to guide your data mining efforts.
+
+- As a methodology, it includes descriptions of the typical phases of a project, the tasks involved with each phase, and an explanation of the relationships between these tasks.
+- As a process model, CRISP-DM provides an overview of the data mining life cycle.
+
+Source: [IBM](https://www.ibm.com/docs/it/spss-modeler/saas?topic=dm-crisp-help-overview)
+
+**This process is documented using the Kanban Board provided by GitHub in this repository project section [Powdery Mildew detection project](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/projects?query=is%3Aopen)**
+
+A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress, and maximize efficiency (or flow). It can help both agile and DevOps teams establish order in their daily work. Kanban boards use cards, columns, and continuous improvement to help technology and service teams commit to the right amount of work, and get it done!
+
+Source: [Atlassian](https://www.atlassian.com/agile/kanban/boards)
+
+![Kanban main]()
+
+The CRISP-DM process is divided in [sprints](https://www.atlassian.com/agile/scrum/sprints#:~:text=What%20are%20sprints%3F,better%20software%20with%20fewer%20headaches.). Each sprint has Epics based on each CRISP-DM task which were subsequently split into task. Each task can be either in the *To Do*, *In progress*, *Review* status as the workflow proceeeds and contains in-depth details.
+
+![Kanban detail]()
+
+## Fixed Bug
+While determining the right hyperparameters for the model to train properly through a *trial and error* process, the accuracy of the validation set was stuck at 0.50000 and presenting high loss. 
+
+![bug]()
+
+The bug was fixed by changing the ```class_mode``` of the datasets from ```binary``` to ```categorical```. ```class_mode``` determins the type of label arrays that are returned. If the output function of the model is expecting ```categorical``` (2D output), labels must be set accordingly. 
+
+Source: [Tensorflow](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator#flow_from_directory)
 
 ## Unfixed Bug
 
@@ -214,51 +273,45 @@ It will answer business requirement 1
 
 ## Technologies used
 
-## Platforms
+### Platforms
 - [Jupiter Notebook](https://jupyter.org/)
 - [Streamlit](https://streamlit.io/)
 - [Kaggle](https://www.kaggle.com/)
 
-## Languages
-- [Jupiter Notebook](https://jupyter.org/)
+### Languages
 - [Python](https://www.python.org/)
+- [Markdown](https://en.wikipedia.org/wiki/Markdown)
   
 ### Main Data Analysis and Machine Learning Libraries
-
-- numpy 1.19.2          used for 
-- pandas 1.1.2          used for 
-- matplotlib 3.3.1      used for 
-- seaborn 0.11.0        used for 
-- plotly 5.12.0         used for 
-- streamlit 0.85.0      used for 
-- scikit-learn 0.24.2   used for 
-- tensorflow-cpu 2.6.0  used for 
-- keras 2.6.0           used for 
+<pre>
+- tensorflow-cpu 2.6.0  used for creating the model
+- numpy 1.19.2          used for converting to array 
+- scikit-learn 0.24.2   used for evaluating the model
+- streamlit 0.85.0      used for creating the dashboard
+- pandas 1.1.2          used for creating/saving as dataframe
+- matplotlib 3.3.1      used for plotting the sets'distribution
+- keras 2.6.0           used for setting model's hyperparamters
+- plotly 5.12.0         used for plotting the model's learning curve 
+- seaborn 0.11.0        used for plotting the model's confusion matrix
+</pre>
 
 ## Credits
 
-In this section, you need to reference where you got your content, media and from where you got extra help. It is common practice to use code from other repositories and tutorials. However, it is necessary to be very specific about these sources to avoid plagiarism.
-You can break the credits section up into Content and Media, depending on what you have included in your project.
+This section lists the sources used to build this project. 
 
 ### Content
 - The leaves dataset was linked from [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves) and created by [Code Institute](https://www.kaggle.com/codeinstitute)
 - The powdery mildew description was taken from [garden design](https://www.gardendesign.com/how-to/powdery-mildew.html) and [almanac](https://www.almanac.com/pest/powdery-mildew)
-- App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks were inspired by [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01)
 - The [CRISP DM](https://www.datascience-pm.com/crisp-dm-2/) steps adopted in the [GitHub project](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/projects?query=is%3Aopen) were modeled on [Introduction to CRISP-DM](https://www.ibm.com/docs/en/spss-modeler/saas?topic=guide-introduction-crisp-dm) articles from IBM.
-- Model learning Curve - C is from [Stack Overflow](https://stackoverflow.com/questions/41908379/keras-plot-training-validation-and-test-set-accuracy) by [Tim Seed](https://stackoverflow.com/users/3257992/tim-seed)
-  
+
 ### Media
-The photos used on the home and sign-up page are from This Open-Source site.
-The images used for the gallery page were taken from this other open-source site.
+- The banner image is from [shutterstock](https://www.shutterstock.com/image-photo/cherry-tree-green-leaves-isolated-on-120667564), the lettering colour is [Pantone Barbados Cherry](https://www.pantone.com/connect/19-1757-TCX)
 
 ### Code
-You need to add a comment in your code to make clear the following:
-- The code you are using is not your original work.
-- The source location of the code you borrowed, usually indicated with a URL.
-For larger dependencies, also refer to the borrowed source in your README file with a short explanation of your intended use and a link to the source.
-For 3rd party libraries, refer to the borrowed source in your README file with a short explanation of your intended use and a link to the source.
+- App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks are from [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01) and where used as a backbone for this project.
+- Model learning Curve - C is from [Stack Overflow](https://stackoverflow.com/questions/41908379/keras-plot-training-validation-and-test-set-accuracy) by [Tim Seed](https://stackoverflow.com/users/3257992/tim-seed)
 
-## Acknowledgements
+### Acknowledgements
 
 Thank to [Code Institute](https://codeinstitute.net/global/)
 

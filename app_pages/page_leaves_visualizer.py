@@ -14,6 +14,9 @@ def page_leaves_visualizer_body():
     st.info(
         f"The client is interested in having a study that visually "
         f"differentiates a cherry leaf affected by powdery mildew from a healthy one.")
+    st.write(
+        f"For additional information, please visit and **read** the "
+        f"[Project README file](https://github.com/cla-cif/Detection-Cherry-Powdery-Mildew#readme).")
     
     version = 'v1'
     if st.checkbox("Difference between average and variability image"):
@@ -95,7 +98,3 @@ def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15,10)):
   else:
     print("The label you selected doesn't exist.")
     print(f"The existing options are: {labels}")
-
-    st.write(
-        f"For additional information, please visit and **read** the "
-        f"[Project README file](https://github.com/cla-cif/Detection-Cherry-Powdery-Mildew#readme).")
