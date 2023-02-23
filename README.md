@@ -253,36 +253,81 @@ The CRISP-DM process is divided in [sprints](https://www.atlassian.com/agile/scr
 
 ![Kanban detail](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/github_kanban_detail.png)
 
-## Fixed Bugs
+## Fixed Bug
 While determining the right hyperparameters for the model to train properly through a *trial and error* process, the accuracy of the validation set was stuck at 0.50000 and presenting high loss. 
 
 ![bug](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/bug.png)
 
-The bug was fixed by changing the ```class_mode``` of the datasets from ```binary``` to ```categorical```. ```class_mode``` determins the type of label arrays that are returned. If the output function of the model is expecting ```categorical``` (2D output), labels must be set accordingly. 
-
-Source: [Tensorflow](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator#flow_from_directory)
+- ##  
+     - __Description__ : While determining the right hyperparameters for the model to train properly through a *trial and error* process, the accuracy of the validation set was stuck at 0.50000 and presenting high loss. 
+     - __Bug__: Among many reasons that could lead to the model not learning from the dataset, this specific case was due to a mismatch between input labels and expected labels. See [Tensorflow](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/image/ImageDataGenerator#flow_from_directory)
+     - __Fix/Workaround__: The bug was fixed by changing the ```class_mode``` of the datasets from ```binary``` to ```categorical```. ```class_mode``` determins the type of label arrays that are returned. If the output function of the model is expecting ```categorical``` (2D output), labels must be set accordingly. 
 
 ## Unfixed Bug
 
 ## Deployment
+The project is coded and hosted on GitHub and deployed with [Heroku](https://www.heroku.com/). 
 
-### Heroku
-- The App live link is: https://YOUR_APP_NAME.herokuapp.com/
-- Set the runtime.txt Python version to a Heroku-20 stack currently supported version.
-- The project was deployed to Heroku using the following steps:
-  1. Log in to Heroku and create an App
-  2. At the Deploy tab, select GitHub as the deployment method.
-  3. Select your repository name and click Search. Once it is found, click Connect.
-  4. Select the branch you want to deploy, then click Deploy Branch.
-  5. The deployment process should happen smoothly if all deployment files are fully functional. Click now the button Open App on the top of the page to access your App.
-  6. If the slug size is too large then add large files not required for the app to the .slugignore file.
+### Creating the Heroku app 
+The steps needed to deploy this projects are as follows:
+
+1. Create a `requirement.txt` file in GitHub, for Heroku to read, listing the dependancies the program needs in order to run.
+2. Set the `runtime.txt` Python version to a Heroku-20 stack currently supported version.
+3. `push` the recent changes to GitHub and go to your [Heroku account page](https://id.heroku.com/login) to create and deploy the app running the project. 
+3. Chose "CREATE NEW APP", give it a unique name, and select a geographical region. 
+4. Add  `heroku/python` buildpack from the _Settings_ tab.
+5. From the _Deploy_ tab, chose GitHub as deployment method, connect to GitHub and select the project's repository. 
+6. Select the branch you want to deploy, then click Deploy Branch.
+7. Click to "Enable Automatic Deploys " or chose to "Deploy Branch" from the _Manual Deploy_ section. 
+8. Wait for the logs to run while the dependencies are installed and the app is being built.
+9. The mock terminal is then ready and accessible from a link similar to `https://your-projects-name.herokuapp.com/`
+10. If the slug size is too large then add large files not required for the app to the `.slugignore` file.
+   
+### Forking the Repository
+
+- By forking this GitHub Repository you make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository. The steps to fork the repository are as follows:
+    - Locate the [GitHub Repository](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector) of this project and log into your GitHub account. 
+    - Click on the "Fork" button, on the top right of the page, just above the "Settings". 
+    - Decide where to fork the repository (your account for instance)
+    - You now have a copy of the original repository in your GitHub account.
+
+### Making a local clone
+
+- Cloning a repository pulls down a full copy of all the repository data that GitHub.com has at that point in time, including all versions of every file and folder for the project. The steps to clone a repository are as follows:
+    - Locate the [GitHub Repository](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector) of this project and log into your GitHub account. 
+    - Click on the "Code" button, on the top right of your page.
+    - Chose one of the available options: Clone with HTTPS, Open with Git Hub desktop, Download ZIP. 
+    - To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+    - Open Git Bash. [How to download and install](https://phoenixnap.com/kb/how-to-install-git-windows).
+    - Chose the location where you want the repository to be created. 
+    - Type:
+    ```
+    $ https://git.heroku.com/cherry-powdery-mildew-detector.git
+    ```
+    - Press Enter, the following lines will appear and your repository is now created.
+    ```
+    $ git clone https://github.com/cla-cif/The-Boxscape-Blog.git
+    Cloning into 'The-Boxscape-Blog'...
+    remote: Enumerating objects: 1429, done.
+    remote: Counting objects: 100% (492/492), done.
+    remote: Compressing objects: 100% (159/159), done. eceiving objects:   3% (43/1
+    Rremote: Total 1429 (delta 358), reused 454 (delta 331), pack-reused 937
+    objects:  96% (1372/1429)
+    Receiving objects: 100% (1429/1429), 364.66 KiB | 1.05 MiB/s, done.
+    Resolving deltas: 100% (1030/1030), done.
+    ```
+    - Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) for a more detailed explaination. 
+
+__You can find the live link to the site here: [TheBoxscape Blog](https://the-boxscape-blog.herokuapp.com/)__
 
 ## Technologies used
 
 ### Platforms
-- [Jupiter Notebook](https://jupyter.org/)
-- [Streamlit](https://streamlit.io/)
-- [Kaggle](https://www.kaggle.com/)
+- [Heroku](https://en.wikipedia.org/wiki/Heroku) To deploy this project
+- [Jupiter Notebook](https://jupyter.org/) to edit code for this project
+- [Kaggle](https://www.kaggle.com/) to download datasets for this project
+- [GitHub](https://github.com/): To store the project code after being pushed from Gitpod.
+- [Gitpod](https://www.gitpod.io/) Gitpod Dashboard was used to write the code and its terminal to 'commit' to GitHub and 'push' to GitHub Pages.
 
 ### Languages
 - [Python](https://www.python.org/)
@@ -299,6 +344,7 @@ Source: [Tensorflow](https://www.tensorflow.org/api_docs/python/tf/keras/preproc
 - keras 2.6.0           used for setting model's hyperparamters
 - plotly 5.12.0         used for plotting the model's learning curve 
 - seaborn 0.11.0        used for plotting the model's confusion matrix
+- streamlit             used for to createing and sharing this project's interface
 </pre>
 
 ## Credits
@@ -314,8 +360,15 @@ This section lists the sources used to build this project.
 - The banner image is from [shutterstock](https://www.shutterstock.com/image-photo/cherry-tree-green-leaves-isolated-on-120667564), the lettering colour is [Pantone Barbados Cherry](https://www.pantone.com/connect/19-1757-TCX)
 
 ### Code
+-  This project was developed by Claudia Cifaldi - [cla-cif](https://github.com/cla-cif) on GitHub. 
+-  The template used for this project belongs to CodeInstitute - [GitHub](https://github.com/Code-Institute-Submissions) and [website](https://codeinstitute.net/global/).
 - App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks are from [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01) and where used as a backbone for this project.
 - Model learning Curve - C is from [Stack Overflow](https://stackoverflow.com/questions/41908379/keras-plot-training-validation-and-test-set-accuracy) by [Tim Seed](https://stackoverflow.com/users/3257992/tim-seed)
+
+### Links to people we like. 
+
+- [GitHub supporting Ukraine](https://github.blog/2022-03-02-our-response-to-the-war-in-ukraine/).
+- [GitHub repository by AndrewStetsenko](https://github.com/AndrewStetsenko/Support-Ukraine).
 
 ### Acknowledgements
 
