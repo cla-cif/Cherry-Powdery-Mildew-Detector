@@ -1,14 +1,14 @@
-![Banner]()
+![Banner](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/banner.jpg)
 
 ## Table of Contents
 1. [Dataset Content](#dataset-content)
 2. [Business Requirements](#business-requirements)
-3. [Hypotesis and validation](#hypotesis-and-validation)
+3. [Hypotesis and validation](#hypothesis-and-validation)
 4. [Implementation of the Business Requirements](#the-rationale-to-map-the-business-requirements-to-the-data-visualizations-and-ml-tasks)
 5. [ML Business case](#ml-business-case)
 6. [Dashboard design](#dashboard-design-streamlit-app-user-interface)
 7. [CRISP DM Process](#the-process-of-cross-industry-standard-process-for-data-mining)
-8. [Bugs](#bugs)
+8. [Bugs](#fixed-bugs)
 9. [Deployment](#deployment)
 10. [Technologies used](#technologies-used)
 11. [Credits](#credits)
@@ -52,10 +52,11 @@ An Image Montage shows the evident difference between a healthy leaf and an infe
 
 Difference between average and variability images shows that affected leaves present more white stipes on the center.
 
-![average variability between samples](/workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_var_powdery_mildew.png)
+![average variability between samples](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/average_image.png)
+
 While image difference between average infectead and average infected leaves shows no intuitive difference. 
 
-![average variability between samples](workspace/Detection-Cherry-Powdery-Mildew/outputs/v1/avg_diff.png)
+![average variability between samples](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/avg_diff.png)
 
 **Sources**:
 
@@ -140,9 +141,14 @@ The same hyperparameters were set for both examples.
 The model trained using RGB images showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using Grayscale images. 
 The same CNN applied to an RGB image dataset has 3,715,234 parameters to train compared to 3,714,658 parameters when the same dataset is converted to grayscale. 
 
-   - Comparison of the same image
+   - Comparison of the same infected leaf image 
+   
+  ![gray_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_gray.png) ![rgb_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_rgb.png)
   
-   - Comparison of LSTM 
+   - Loss/Accuracy of LSTM model trained on grayscale images
+   ![gray_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_gray.png) 
+   - Loss/Accuracy of LSTM model trained on RGB images
+   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_rgb.png)
 
 **3. Conclusion**
 
@@ -162,7 +168,6 @@ The study is presented in the dashboard which displays:
 -  The "mean" and "standard deviation" images for healthy and powdery mildew infected leaves 
 -  Image montage for either infected or healthy leaves.
 [See hypotesis 1 for more information])(#Hypotesis 1)
-![]()
 
 ### Business Requirement 2: Classification
 >The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not.
@@ -184,6 +189,7 @@ Following each batch of uploaded images a downloadable ```.csv``` report is avai
 - The model output is defined as a flag, indicating if the leaf has powdery mildew or not and the associated probability of being infected or not. The farmers will take a picture of a leaf and upload it to the App. The prediction is made on the fly (not in batches).
 - Heuristics: The current detection method is based on a manual inspection. A farmer spends around 30 minutes in each tree, taking a few samples of tree leaves and verifying visually if the leaf tree is healthy or has powdery mildew. Vusual criteria is slow and it leaves room to procduce inaccurate diagnostics due to human error. 
 - The training data to fit the model come from the leaves database provided by Farmy & Foody company and uploaded on Kaggle. This dataset contains 4208 images of cherry leaves. 
+![leaf_detector](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_detector.png)
 
 ## Dashboard Design (Streamlit App User Interface)
 
@@ -241,16 +247,16 @@ A kanban board is an agile project management tool designed to help visualize wo
 
 Source: [Atlassian](https://www.atlassian.com/agile/kanban/boards)
 
-![Kanban main]()
+![Kanban main](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/github_kanban_main.png)
 
 The CRISP-DM process is divided in [sprints](https://www.atlassian.com/agile/scrum/sprints#:~:text=What%20are%20sprints%3F,better%20software%20with%20fewer%20headaches.). Each sprint has Epics based on each CRISP-DM task which were subsequently split into task. Each task can be either in the *To Do*, *In progress*, *Review* status as the workflow proceeeds and contains in-depth details.
 
-![Kanban detail]()
+![Kanban detail](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/github_kanban_detail.png)
 
-## Fixed Bug
+## Fixed Bugs
 While determining the right hyperparameters for the model to train properly through a *trial and error* process, the accuracy of the validation set was stuck at 0.50000 and presenting high loss. 
 
-![bug]()
+![bug](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/bug.png)
 
 The bug was fixed by changing the ```class_mode``` of the datasets from ```binary``` to ```categorical```. ```class_mode``` determins the type of label arrays that are returned. If the output function of the model is expecting ```categorical``` (2D output), labels must be set accordingly. 
 
