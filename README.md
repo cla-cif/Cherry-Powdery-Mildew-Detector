@@ -35,10 +35,10 @@ Summarizing:
 1. **Hypotes**: Infected leaves have clear marks differentiating them from the healthy leaves.
    - __How to validate__: Research about the disease and build an average image study can help to investigate it.<br/><br/>
 
-2. **Hypotesis**: Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
+2. **Hypotesis**: Mathematical formulas comparison: `softmax` performs better than `sigmoid` as activation function for the CNN output layer. 
    - __How to validate__: Understand the kind of problem we are trying to solve and the differences between matemathical functions used to solve that class of problem. Train and compare identical models changing only the activation function of the output layer. <br/><br/>
 
-3. **Hypotesis**: Converting ```RGB``` images to ```grayscale``` improves image classification performance.  
+3. **Hypotesis**: Converting `RGB` images to `grayscale` improves image classification performance.  
    - __How to validate__: Understand how colours are represented in tensors. Train and compare identical models changing only the image color.
 
 **WHY**A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
@@ -49,6 +49,9 @@ Understand the concepts of overfitting and underfitting and how to steer away fr
 
 We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. 
 An Image Montage shows the evident difference between a healthy leaf and an infected one. 
+
+![montage_healthy](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/montage_healthy.png)
+![montage_infected](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/montage_infected.png)
 
 Difference between average and variability images shows that affected leaves present more white stipes on the center.
 
@@ -64,7 +67,7 @@ While image difference between average infectead and average infected leaves sho
 
 ---
 ### Hypotesis 2
-> Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. 
+> Mathematical formulas comparison: `softmax` performs better than `sigmoid` as activation function for the CNN output layer. 
 
 **1. Introduction**
 
@@ -78,7 +81,7 @@ These constraints are given by the ```sigmoid``` function which is also called t
 Backpropagation is where the “learning” or “adjustment” takes place in the neural network in order to adjust the weights of all the nodes throughout the layers of the network. The error value (distance between actual and predicted label) flows back through the network in the opposite direction as before, and it is then used in combination with the derivative of the Sigmoid function. <br/>
 The derivative of a function will give us the angle/slope of the graph that the function describes. This value will let the network know weathe to increase or decrease the value of the individual weights in the layers of the network but for a very high or very low value of the error, the derivative of the sigmoid is very low (hence the _squashing_ effect).  
 
-If we see the problem as **multi class classification** we will have 2 output nodes (because I want to predict two classes healthy vs infected). In this case the ```softmax``` function is applied to the output layer. Like the previous case the output of this function lies in the range [0,1] but now we are looking at a probability distribution over the predicted classes which adds up to 1 with the target class having the highes probability. The probability distribution comes from normalizing the output for each class between 0 and 1 and divide by their sum. 
+If we see the problem as **multi class classification** we will have 2 output nodes (because I want to predict two classes healthy vs infected). In this case the `softmax` function is applied to the output layer. Like the previous case the output of this function lies in the range [0,1] but now we are looking at a probability distribution over the predicted classes which adds up to 1 with the target class having the highes probability. The probability distribution comes from normalizing the output for each class between 0 and 1 and divide by their sum. 
 
    2. Understand how to evaluate the performance
    
@@ -103,7 +106,13 @@ A plot of learning curves shows a good fit if:
 The model was set to train only on 32 Epoch with no early stoppings, just for the purpose of this hypotesis, and shows overfitting around the 10 last epochs as expected.
 The same hyperparameters were set for both examples. 
 The model trained using ```softmax``` showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using ```sigmoid```. 
-
+ - Loss/Accuracy of LSTM model trained using `softmax`
+ 
+   ![softmax_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_rgb_softmax.png) 
+ - Loss/Accuracy of LSTM model trained using `sigmoid`
+ 
+   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_sigmoid.png)
+   
 **3. Conclusion**
 
 In our case the ```softmax``` function performed better. 
@@ -112,8 +121,8 @@ In our case the ```softmax``` function performed better.
 - [Activation Functions Compared With Experiments](https://wandb.ai/shweta/Activation%20Functions/reports/Activation-Functions-Compared-With-Experiments--VmlldzoxMDQwOTQ) by [Sweta Shaw](https://wandb.ai/shweta)
 - [Backpropagation in Fully Convolutional Networks](https://towardsdatascience.com/backpropagation-in-fully-convolutional-networks-fcns-1a13b75fb56a#:~:text=Backpropagation%20is%20one%20of%20the,respond%20properly%20to%20future%20urges.) by [Giuseppe Pio Cannata](https://cannydatascience.medium.com/)
 - [Understanding The Derivative Of The Sigmoid Function](https://towardsdatascience.com/understanding-the-derivative-of-the-sigmoid-function-cbfd46fb3716#:~:text=The%20Sigmoid%20function%20is%20often,of%20the%20network%20or%20not.) by [Jacob Toftgaard Rasmussen](https://jacobtoftgaardrasmussen.medium.com/)
-- [Activation Functions: Comparison of Trends in Practice and Research for Deep Learning](https://arxiv.org/pdf/1811.03378.pdf) by *Chigozie Enyinna Nwankpa, Winifred Ijomah, Anthony Gachagan, and Stephen Marshall*
 - [How to use Learning Curves to Diagnose Machine Learning Model Performance](https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/) by [Jason Brownlee](https://machinelearningmastery.com/about)
+- [Activation Functions: Comparison of Trends in Practice and Research for Deep Learning](https://arxiv.org/pdf/1811.03378.pdf) by *Chigozie Enyinna Nwankpa, Winifred Ijomah, Anthony Gachagan, and Stephen Marshall*
 
 ---
 ### Hypotesis 3 
@@ -146,9 +155,11 @@ The same CNN applied to an RGB image dataset has 3,715,234 parameters to train c
   ![gray_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_gray.png) ![rgb_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_rgb.png)
   
    - Loss/Accuracy of LSTM model trained on grayscale images
+   
    ![gray_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_gray.png) 
    - Loss/Accuracy of LSTM model trained on RGB images
-   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_rgb.png)
+   
+   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_rgb_softmax.png)
 
 **3. Conclusion**
 
@@ -172,12 +183,12 @@ The study is presented in the dashboard which displays:
 ### Business Requirement 2: Classification
 >The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not.
 
-The client can upload from the dashboard cherry leaves images in ```.jpeg``` format up to 200MB obtaining immediate feedback on each leaf. The User Interface of the dashboard with a file uploader widget. The user should upload multiple powdery mildew leaf images. It will display the image and a prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
+The client can upload from the dashboard cherry leaves images in `.jpeg` format up to 200MB obtaining immediate feedback on each leaf. The User Interface of the dashboard with a file uploader widget. The user should upload multiple powdery mildew leaf images. It will display the image and a prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
 
 ### Business Requirement 3: Report
 >The client is interested in obtaining a prediction report of the examined leaves. 
 
-Following each batch of uploaded images a downloadable ```.csv``` report is available with the predicted status. 
+Following each batch of uploaded images a downloadable `.csv` report is available with the predicted status. 
 
 ## ML Business Case
 
