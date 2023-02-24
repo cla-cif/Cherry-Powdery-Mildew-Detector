@@ -1,4 +1,4 @@
-inputs/cherryleaves_dataset/cherry-leaves/train/*
-inputs/cherryleaves_dataset/cherry-leaves/*
-readme_images/*
-README.md
+/inputs/cherryleaves_dataset/cherry-leaves/train/*
+/inputs/cherryleaves_dataset/cherry-leaves/test/*
+/readme_images/*
+/README.md
