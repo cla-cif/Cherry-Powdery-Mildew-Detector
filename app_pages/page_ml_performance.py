@@ -57,6 +57,16 @@ def page_ml_performance_metrics():
         f"The accuracy is the measure of how accurate your model's prediction (accuracy) is compared to the true data (val_acc)."
         f"When good model performs well on unseen data it means that it's able to generalize and didn't fit too closely to the training dataset.")
 
+    model_perf = plt.imread(f"outputs/{version}/clf_report.png")
+    st.image(model_perf, caption='Classification Report')  
+
+    st.warning(
+        f"**Classification Report**\n\n"
+        f"Precision: Percentage of correct predictions. The ratio of true positives to the sum of a true positive and false positive."
+        f"Recall: Percentage of positive cases detected. The ratio of true positives to the sum of true positives and false negatives."
+        f"F1 Score: Percentage of correct positive predictions. Weighted harmonic mean of precision and recall such that the best score is 1.0 and the worst is 0.0 "
+        f"Support: The number of actual occurrences of the class in the specified dataset.")
+
 
     st.write("### Generalised Performance on Test Set")
     st.dataframe(pd.DataFrame(load_test_evaluation(version), index=['Loss', 'Accuracy']))

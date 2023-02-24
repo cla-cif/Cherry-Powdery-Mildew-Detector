@@ -375,6 +375,7 @@ This section lists the sources used to build this project.
 -  The template used for this project belongs to CodeInstitute - [GitHub](https://github.com/Code-Institute-Submissions) and [website](https://codeinstitute.net/global/).
 - App pages for the Streamlit dashboard, data collection and data visualization jupiter notebooks are from [Code Institute WP01](https://github.com/cla-cif/WalkthroughProject01) and where used as a backbone for this project.
 - Model learning Curve - C is from [Stack Overflow](https://stackoverflow.com/questions/41908379/keras-plot-training-validation-and-test-set-accuracy) by [Tim Seed](https://stackoverflow.com/users/3257992/tim-seed)
+- Classification Report - C is from [Stack Overflow](https://stackoverflow.com/questions/28200786/how-to-plot-scikit-learn-classification-report) by [Özer Özdal](https://stackoverflow.com/users/20249459/%c3%96zer-%c3%96zdal)
 
 ### Links to people we like. 
 
