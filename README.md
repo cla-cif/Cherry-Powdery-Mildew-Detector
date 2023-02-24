@@ -47,7 +47,12 @@ Understand the concepts of overfitting and underfitting and how to steer away fr
 ### Hypotesis 1
 > Infected leaves have clear marks differentiating them from the healthy leaves.
 
+**1. Introduction**
+
 We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. 
+
+**2. Observation**
+
 An Image Montage shows the evident difference between a healthy leaf and an infected one. 
 
 ![montage_healthy](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/montage_healthy.png)
@@ -60,6 +65,12 @@ Difference between average and variability images shows that affected leaves pre
 While image difference between average infectead and average infected leaves shows no intuitive difference. 
 
 ![average variability between samples](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/avg_diff.png)
+
+**3. Conclusion**
+
+The model was able to detect such differences and learn how to differenciate and generalize in order to make accurate predictions.
+A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data.
+In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels.
 
 **Sources**:
 

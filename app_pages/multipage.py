@@ -1,4 +1,5 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 
 
 # Class to generate multiple Streamlit pages using an object oriented approach

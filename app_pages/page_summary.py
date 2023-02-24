@@ -18,7 +18,7 @@ def page_summary_body():
         f"on the fruits thus reducing yeld and quality."
         f" \n\n")
 
-    st.info(
+    st.warning(
         f"**Project Dataset**\n\n"
         f"The available dataset contains 2104 healthy leaves and 2104 affected leaves "
         f"individually photographed against a neutral background."
