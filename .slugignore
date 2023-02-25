@@ -1,7 +1,9 @@
-inputs/cherryleaves_dataset/cherry-leaves/train/*
-inputs/cherryleaves_dataset/cherry-leaves/test/*
-readme_images/*
-README.md
-.gitpod.dockerfile
-.gitpod.yml
-app_pages/__pycache__/
+/workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/train/healthy/*
+/workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/train/powdery_mildew/*
+/workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/test/healthy/*
+/workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/test/powdery_mildew/*
+/workspace/Detection-Cherry-Powdery-Mildew/readme_images/*
+/workspace/Detection-Cherry-Powdery-Mildew/README.md
+/workspace/Detection-Cherry-Powdery-Mildew/.gitpod.dockerfile
+/workspace/Detection-Cherry-Powdery-Mildew/.gitpod.yml
+/workspace/Detection-Cherry-Powdery-Mildew/app_pages/__pycache__/*
