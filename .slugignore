@@ -2,6 +2,8 @@
 /workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/train/powdery_mildew/*
 /workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/test/healthy/*
 /workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/test/powdery_mildew/*
+/workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/validation/healthy/*
+/workspace/Detection-Cherry-Powdery-Mildew/inputs/cherryleaves_dataset/cherry-leaves/validation/powdery_mildew/*
 /workspace/Detection-Cherry-Powdery-Mildew/readme_images/*
 /workspace/Detection-Cherry-Powdery-Mildew/README.md
 /workspace/Detection-Cherry-Powdery-Mildew/.gitpod.dockerfile
