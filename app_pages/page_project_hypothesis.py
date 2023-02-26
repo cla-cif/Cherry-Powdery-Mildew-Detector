@@ -1,6 +1,5 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from streamlit_extras.switch_page_button import switch_page
 
 
 def page_project_hypothesis_body():
