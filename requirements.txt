@@ -3,7 +3,6 @@ pandas
 matplotlib
 seaborn
 plotly
-kaleido
 
 streamlit
 
