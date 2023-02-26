@@ -4,14 +4,15 @@
 1. [Dataset Content](#dataset-content)
 2. [Business Requirements](#business-requirements)
 3. [Hypotesis and validation](#hypothesis-and-validation)
-4. [Implementation of the Business Requirements](#the-rationale-to-map-the-business-requirements-to-the-data-visualizations-and-ml-tasks)
-5. [ML Business case](#ml-business-case)
-6. [Dashboard design](#dashboard-design-streamlit-app-user-interface)
-7. [CRISP DM Process](#the-process-of-cross-industry-standard-process-for-data-mining)
-8. [Bugs](#fixed-bugs)
-9. [Deployment](#deployment)
-10. [Technologies used](#technologies-used)
-11. [Credits](#credits)
+4. [Rationale for the model](#the-rationale-for-the-model)
+5. [Implementation of the Business Requirements](#the-rationale-to-map-the-business-requirements-to-the-data-visualizations-and-ml-tasks)
+6. [ML Business case](#ml-business-case)
+7. [Dashboard design](#dashboard-design-streamlit-app-user-interface)
+8. [CRISP DM Process](#the-process-of-cross-industry-standard-process-for-data-mining)
+9. [Bugs](#fixed-bugs)
+10. [Deployment](#deployment)
+11. [Technologies used](#technologies-used)
+12. [Credits](#credits)
 
 ## Dataset Content
 
@@ -41,8 +42,6 @@ Summarizing:
 3. **Hypotesis**: Converting `RGB` images to `grayscale` improves image classification performance.  
    - __How to validate__: Understand how colours are represented in tensors. Train and compare identical models changing only the image color.
 
-**WHY**A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
-Understand the concepts of overfitting and underfitting and how to steer away from them. 
 
 ### Hypotesis 1
 > Infected leaves have clear marks differentiating them from the healthy leaves.
@@ -178,6 +177,77 @@ Keeping the colour information performed better. The plot shows lower loss and m
 
 Sources:
 - [How RGB and Grayscale Images Are Represented in NumPy Arrays](https://towardsdatascience.com/exploring-the-mnist-digits-dataset-7ff62631766a) by [Rukshan Pramoditha](https://rukshanpramoditha.medium.com/)
+
+## The rationale for the model
+
+The model has 1 input layer, 3 hidden layers(2 ConvLayer, 1 FullyConnected), 1 output layer. 
+
+### The goal
+
+Setting the hyperparameters, determining the number of hidden layers and node, choosing the optimizer was a matter of trial and error. </br> 
+The model does not necessarily represent the best one but this structure was eventually chosen evaluating the outcome of multiple tests and tuning the model according to the goal. </br>
+
+A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data. In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels as seen in the training dataset but the general pattern from feature to labels. 
+
+A good model also requires as little as possible computational power by keeping down the neural network complexity and the number of trainable parameters while still being able to generalize, mantain accuracy and minimize error. 
+
+### Choosing the hyperparameters
+
+- **Convolutional layer size**: Using a two dimensions CNN (`Conv2D`) is appropriate for the pictures in our dataset which are not volumentrical (which require a 3D CNN). 1D convolution layer is also not a good fit because creates a convolution kernel that is convolved with the layer input over a single spatial (or temporal) dimension to produce a tensor of outputs. 
+
+- **Convolutional kernel size**: The convolutional filter (3x3) moves across x-axes and y-axes (stride 1 in our case) of the input shape of the images, hence a Conv2D (two dimenstions). </br>
+The convolutional filter (or kernel) 3x3 works well with a 2D CNN (The third dimension is equal to the number of channels of the input image), better than a 2x2 which won't allow a zero padding because image sizes are even numbers (keeping stride=1) and better than a 5x5 which extracts less information. A small kernel looks at very few pixels at once hence focusing on 'the details'. 
+
+- **Number of neurons**: The chosen numbers are power of 2 due to computational reasons. The GPU can take advantage of optimizations related to efficiencies in working with powers of two.
+
+- **Activation function**: `ReLu` is used is because it is simple, fast, and empirically it seems to work well. It has been observed that training a deep network with `ReLu` tended to converge much more quickly and reliably than training a deep network with `sigmoid` activation. Furthermore, the derivative of ReLu is either 0 or 1, so multiplying by it won't cause weights that are further away from the end result of the loss function to suffer from the vanishing gradient problem. 
+
+- **Pooling**: Pooling is performed in neural networks to reduce variance and computation complexity. Among Average pooling, Min pooling and Max pooling, we chose the latter which selects the brighter pixels from the image. `MaxPooling` is useful when the background of the image is dark (green in our case) and we are interested in only the lighter pixels of the image (powdery mildew is white).
+
+- **Output Activation Function**: This kind of classification problem requires either `softmax` or `sigmoid` activation functions. Our model trained using ```softmax``` showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using ```sigmoid```. See [Hypotesis 2](#Hypotesis-2) for more details.
+
+- **Dropout**:  The Dropout layer is a mask that nullifies the contribution of some neurons towards the next layer and leaves unmodified all others. Dropout layers are important in training CNNs because they prevent overfitting on the training data. If they aren’t present, the first batch of training samples influences the learning in a disproportionately high manner. Since the number of samples is not extremely high, 20% dropout was deemed appropriate. 
+
+**Source**: 
+- [How to choose the size of the convolution filter or Kernel size for CNN?](https://medium.com/analytics-vidhya/how-to-choose-the-size-of-the-convolution-filter-or-kernel-size-for-cnn-86a55a1e2d15) by - [Swarnima Pandey](https://medium.com/@pandeyswarnima)
+- [The advantages of ReLu](https://stats.stackexchange.com/questions/126238/what-are-the-advantages-of-relu-over-sigmoid-function-in-deep-neural-networks#:~:text=The%20main%20reason%20why%20ReLu,deep%20network%20with%20sigmoid%20activation.)
+- [Maxpooling vs minpooling vs average pooling](https://medium.com/@bdhuma/which-pooling-method-is-better-maxpooling-vs-minpooling-vs-average-pooling-95fb03f45a9#:~:text=Average%20pooling%20method%20smooths%20out,lighter%20pixels%20of%20the%20image.) by - [Madhushree Basavarajaiah](https://medium.com/@bdhuma)
+- [How ReLU and Dropout Layers Work in CNNs](https://www.baeldung.com/cs/ml-relu-dropout-layers)
+
+### Hidden Layers
+
+They are “hidden” because the true values of their nodes are unknown in the training dataset as we only know the input and output.</br> 
+These layers perform featrue extraction and classification based on those features. 
+
+>There are really two decisions that must be made regarding the hidden layers: how many hidden layers to actually have in the neural network and how many neurons will be in each of these layers. 
+Using too few neurons in the hidden layers will result in something called underfitting. Underfitting occurs when there are too few neurons in the hidden layers to adequately detect the signals in a complicated data set.
+Using too many neurons in the hidden layers can result in several problems. First, too many neurons in the hidden layers may result in overfitting. 
+
+**Source**: *Introduction to Neural Networks for Java* by Jeff Heaton. Preview at [Google Books](https://books.google.it/books?id=Swlcw7M4uD8C&pg=PA158&lpg=PA158&dq=Introduction%20to%20Neural%20Networks%20for%20Java,%20Second%20Edition%20The%20Number%20of%20Hidden%20Layers&source=bl&ots=TJx9QaeWw6&sig=gZqg9e73K1oCqWBxmcBWAf2pbrE&hl=it&sa=X&ved=0CCUQ6AEwAGoVChMIudnOsJr1yAIVwjkaCh3AAgnU#v=onepage&q=Introduction%20to%20Neural%20Networks%20for%20Java%2C%20Second%20Edition%20The%20Number%20of%20Hidden%20Layers&f=false)
+
+>In order to secure the ability of the network to generalize the number of nodes has to be kept as low as possible. If you have a large excess of nodes, you network becomes a memory bank that can recall the training set to perfection, but does not perform well on samples that was not part of the training set. 
+[Steffen B Petersen](https://www.researchgate.net/post/How-to-decide-the-number-of-hidden-layers-and-nodes-in-a-hidden-layer)
+
+- **Conv vs FC Layers**: 
+  - *Convolutional Layer* are used for feature extraction, use fewer parameters by forcing input values to share the parameters. 
+  - *Dense Layers* use a linear operation meaning every output is formed by the function based on every input. They are used as final layers in some models because they can directly perform classification.
+
+**Source**: [Dense Layer vs convolutional layer](https://datascience.stackexchange.com/questions/85582/dense-layer-vs-convolutional-layer-when-to-use-them-and-how#:~:text=As%20known%2C%20the%20main%20difference,function%20based%20on%20every%20input.)
+
+
+### Model Compilation
+
+- **Loss**: A loss function is a function that compares the target and predicted output values; measures how well the neural network models the training data. When training, we aim to minimize this loss between the predicted and target outputs. `categorical_crossentropy` (also called Softmax Loss. It is a Softmax activation plus a Cross-Entropy loss) was used since the problem has been treated as multiclass classification. See [Hypotesis 2](#Hypotesis-2) for more details.
+
+- **Optimizer**: An optimizer is a function or algorithm that is created and used for neural network attribute modification (i.e., weights, learning rates) for the purpose of speeding up convergence while minimizing loss and maximizing accuracy. `adagrad` was chosen going throug the trial and error phase.
+
+- **Metrics**: `accuracy` Calculates how often predictions equal labels. This metric creates two local variables, total and count that are used to compute the frequency with which `y_pred` matches `y_true`.  
+
+**Source**: 
+- [7 tips to choose the best optimizer](https://towardsdatascience.com/7-tips-to-choose-the-best-optimizer-47bb9c1219e) by [Davide Giordano](https://medium.com/@davidegiordano)
+- [Impact of Optimizers in Image Classifiers](https://towardsai.net/p/l/impact-of-optimizers-in-image-classifiers)
+- [Keras Accuracy Metrics](https://keras.io/api/metrics/accuracy_metrics/#:~:text=metrics.,with%20which%20y_pred%20matches%20y_true%20.)
+
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 
