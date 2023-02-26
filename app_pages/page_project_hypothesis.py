@@ -1,5 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
+from streamlit_extras.switch_page_button import switch_page
 
 
 def page_project_hypothesis_body():
@@ -14,8 +15,7 @@ def page_project_hypothesis_body():
         f" then a subtle white cotton-like growth develops in the infected area."
     )
     st.write("To see an image montage of infected cherry leaves visit the Leaf Visualiser tab")
-    from streamlit_extras.switch_page_button import switch_page
-
+    
     leaf_visualiser = st.button("Leaf Visualiser")
     if leaf_visualiser:
         switch_page("page_leaves_visualizer")

@@ -5,6 +5,7 @@ seaborn
 plotly
 
 streamlit
+streamlit-extras
 
 scikit-learn
 tensorflow-cpu
