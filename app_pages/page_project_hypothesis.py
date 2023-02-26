@@ -14,28 +14,8 @@ def page_project_hypothesis_body():
         f"typically the first symptom is a light-green, circular lesion on either leaf surface,"
         f" then a subtle white cotton-like growth develops in the infected area."
     )
-    st.write("To see an image montage of infected cherry leaves visit the Leaf Visualiser tab")
-    
-    leaf_visualiser = st.button("Leaf Visualiser")
-    if leaf_visualiser:
-        switch_page("page_leaves_visualizer")
-    # healthy_img = plt.imread(f"readme_images/montage_healthy.png")
-    # st.image(healthy_img, caption='Healthy leaves')  
-    # infected_img = plt.imread(f"readme_images/montage_infected.png")
-    # st.image(infected_img, caption='Infected leaves') 
-
-    # st.info(
-    #     f"Difference between average and variability images shows that affected leaves present more white stipes on the center."
-    # )
-    # healthy_img = plt.imread(f"readme_images/average_image.png")
-    # st.image(healthy_img, caption='Difference between average and variability images')  
-
-    # st.info(
-    #     f"Image difference between average infectead and average infected leaves shows no intuitive difference."
-    # )
-    # healthy_img = plt.imread(f"readme_images/avg_diff.png")
-    # st.image(healthy_img, caption='Image difference')  
-
+    st.write("To visualize a thorough investigation of infected and healthy leaves visit the Leaves Visualiser tab.")
+     
     st.warning(
         f"The model was able to detect such differences and learn how to differenciate and generalize in order to make accurate predictions."
         f" A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data."
