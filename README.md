@@ -5,14 +5,17 @@
 2. [Business Requirements](#business-requirements)
 3. [Hypotesis and validation](#hypothesis-and-validation)
 4. [Rationale for the model](#the-rationale-for-the-model)
-5. [Implementation of the Business Requirements](#the-rationale-to-map-the-business-requirements-to-the-data-visualizations-and-ml-tasks)
-6. [ML Business case](#ml-business-case)
-7. [Dashboard design](#dashboard-design-streamlit-app-user-interface)
-8. [CRISP DM Process](#the-process-of-cross-industry-standard-process-for-data-mining)
-9. [Bugs](#fixed-bugs)
-10. [Deployment](#deployment)
-11. [Technologies used](#technologies-used)
-12. [Credits](#credits)
+5. [Trial and error](#trial-and-error)
+6. [Implementation of the Business Requirements](#the-rationale-to-map-the-business-requirements-to-the-data-visualizations-and-ml-tasks)
+7. [ML Business case](#ml-business-case)
+8. [Dashboard design](#dashboard-design-streamlit-app-user-interface)
+9. [CRISP DM Process](#the-process-of-cross-industry-standard-process-for-data-mining)
+10. [Bugs](#bugs)
+11. [Deployment](#deployment)
+12. [Technologies used](#technologies-used)
+13. [Credits](#credits)
+
+### Deployed version at [cherry-powdery-mildew-detector.herokuapp.com](https://cherry-powdery-mildew-detector.herokuapp.com/)
 
 ## Dataset Content
 
@@ -34,14 +37,13 @@ Summarizing:
 ## Hypothesis and validation
 
 1. **Hypotes**: Infected leaves have clear marks differentiating them from the healthy leaves.
-   - __How to validate__: Research about the disease and build an average image study can help to investigate it.<br/><br/>
+   - __How to validate__: Research about the disease and build an average image study can help to investigate it.<br/>
 
 2. **Hypotesis**: Mathematical formulas comparison: `softmax` performs better than `sigmoid` as activation function for the CNN output layer. 
-   - __How to validate__: Understand the kind of problem we are trying to solve and the differences between matemathical functions used to solve that class of problem. Train and compare identical models changing only the activation function of the output layer. <br/><br/>
+   - __How to validate__: Understand the kind of problem we are trying to solve and the differences between matemathical functions used to solve that class of problem. Train and compare identical models changing only the activation function of the output layer. <br/>
 
 3. **Hypotesis**: Converting `RGB` images to `grayscale` improves image classification performance.  
    - __How to validate__: Understand how colours are represented in tensors. Train and compare identical models changing only the image color.
-
 
 ### Hypotesis 1
 > Infected leaves have clear marks differentiating them from the healthy leaves.
@@ -78,6 +80,7 @@ In this way the model is able to generalize and predict future observation relia
 ---
 ### Hypotesis 2
 > Mathematical formulas comparison: `softmax` performs better than `sigmoid` as activation function for the CNN output layer. 
+For further details the results mentioned in this section can be downloaded here [softmax hypotesis](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/attachments/ModellingEvaluating_softmax_rgb.ipynb) and here [sigmoid hypotesis](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/attachments/ModellingEvaluating_sigmoid.ipynb)
 
 **1. Introduction**
 
@@ -137,6 +140,8 @@ In our case the ```softmax``` function performed better.
 ---
 ### Hypotesis 3 
 > Converting ```RGB``` images to ```grayscale``` improves image classification performance. 
+
+For further details the results mentioned in this section can be downloaded here [rgb hypotesis](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/attachments/ModellingEvaluating_softmax_rgb.ipynb) and here [gray hypotesis](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/attachments/ModellingEvaluating_gray.ipynb)
 
 **1. Introduction**
 
@@ -248,6 +253,8 @@ Using too many neurons in the hidden layers can result in several problems. Firs
 - [Impact of Optimizers in Image Classifiers](https://towardsai.net/p/l/impact-of-optimizers-in-image-classifiers)
 - [Keras Accuracy Metrics](https://keras.io/api/metrics/accuracy_metrics/#:~:text=metrics.,with%20which%20y_pred%20matches%20y_true%20.)
 
+## Trial and error
+Part of the process that lead to the current hyperparameters settings and model architecture is documented in [this file](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/attachments/trial_and_error.pdf). It compares the outputs and inputs of 5 different models, changing one parameter at a time. 
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 
@@ -345,7 +352,9 @@ The CRISP-DM process is divided in [sprints](https://www.atlassian.com/agile/scr
 
 ![Kanban detail](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/github_kanban_detail.png)
 
-## Fixed Bug
+## Bugs
+
+### Fixed Bug
 While determining the right hyperparameters for the model to train properly through a *trial and error* process, the accuracy of the validation set was stuck at 0.50000 and presenting high loss. 
 
 ![bug](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/bug.png)
@@ -356,6 +365,15 @@ While determining the right hyperparameters for the model to train properly thro
      - __Fix/Workaround__: The bug was fixed by changing the ```class_mode``` of the datasets from ```binary``` to ```categorical```. ```class_mode``` determins the type of label arrays that are returned. If the output function of the model is expecting ```categorical``` (2D output), labels must be set accordingly. 
 
 ## Unfixed Bug
+
+Images producing false predictions
+
+![bug_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/bug-leaf.jpeg)
+
+- ##  
+     - __Description__ : The above image, despite looking healthy was predicted infected. 
+     - __Bug__: The glare results in white pixels wrongly interpreted as powdery mildew infection. The background being the same colour of the leaf could be misleading as the model is not able to clearly detect the leaf shape. 
+     - __Fix/Workaround__: The model needs further tuning. 
 
 ## Deployment
 The project is coded and hosted on GitHub and deployed with [Heroku](https://www.heroku.com/). 
@@ -467,3 +485,4 @@ This section lists the sources used to build this project.
 
 Thank to [Code Institute](https://codeinstitute.net/global/)
 
+### Deployed version at [cherry-powdery-mildew-detector.herokuapp.com](https://cherry-powdery-mildew-detector.herokuapp.com/)
