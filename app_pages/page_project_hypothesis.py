@@ -38,9 +38,9 @@ def page_project_hypothesis_body():
     st.warning(
         f"In our case the ```softmax``` function performed better. "
     )
-    model_perf_softmax = plt.imread(f"readme_images/model_history_rgb_softmax.png")
+    model_perf_softmax = plt.imread(f"streamlit_images/model_history_rgb_softmax.png")
     st.image(model_perf_softmax, caption='Softmax LSTM Loss/Accuracy performance') 
-    model_perf_sigmoid = plt.imread(f"readme_images/model_history_sigmoid.png")
+    model_perf_sigmoid = plt.imread(f"streamlit_images/model_history_sigmoid.png")
     st.image(model_perf_sigmoid, caption='Sigmoid LSTM Loss/Accuracy performance')
 
 
@@ -60,9 +60,9 @@ def page_project_hypothesis_body():
         f"Keeping the colour information performed better. The plot shows lower loss and more consistent accuracy."
         f" The difference between rgb and grayscale images' trainable parameters was so small that brought no significant benefit to the computational cost. "
     )
-    model_perf_rgb = plt.imread(f"readme_images/model_history_rgb_softmax.png")
+    model_perf_rgb = plt.imread(f"streamlit_images/model_history_rgb_softmax.png")
     st.image(model_perf_rgb, caption='RGB images LSTM Loss/Accuracy performance')
-    model_perf_gray = plt.imread(f"readme_images/model_history_gray.png")
+    model_perf_gray = plt.imread(f"streamlit_images/model_history_gray.png")
     st.image(model_perf_gray, caption='Grayscale images LSTM Loss/Accuracy performance') 
 
     st.write(

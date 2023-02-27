@@ -121,10 +121,10 @@ The same hyperparameters were set for both examples.
 The model trained using ```softmax``` showed less training/validation sets gap and more consistent learning rate after the 5th Epoch compared to the model trained using ```sigmoid```. 
  - Loss/Accuracy of LSTM model trained using `softmax`
  
-   ![softmax_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_rgb_softmax.png) 
+   ![softmax_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/model_history_rgb_softmax.png) 
  - Loss/Accuracy of LSTM model trained using `sigmoid`
  
-   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_sigmoid.png)
+   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/model_history_sigmoid.png)
    
 **3. Conclusion**
 
@@ -167,7 +167,8 @@ The same CNN applied to an RGB image dataset has 3,715,234 parameters to train c
 
    - Comparison of the same infected leaf image 
    
-  ![gray_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_gray.png) ![rgb_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_rgb.png)
+  ![gray_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/leaf_gray.png) ![rgb_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/leaf_rgb.png)
+  
   
    - Loss/Accuracy of LSTM model trained on grayscale images
    
