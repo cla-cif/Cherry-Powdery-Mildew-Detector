@@ -16,8 +16,8 @@ def page_project_hypothesis_body():
     st.write("To visualize a thorough investigation of infected and healthy leaves visit the Leaves Visualiser tab.")
      
     st.warning(
-        f"The model was able to detect such differences and learn how to differenciate and generalize in order to make accurate predictions."
-        f" A good model trains its ability to predict classes on a batch of data withouth adhering too closely to that set of data."
+        f"The model was able to detect such differences and learn how to differentiate and generalize in order to make accurate predictions."
+        f" A good model trains its ability to predict classes on a batch of data without adhering too closely to that set of data."
         f" In this way the model is able to generalize and predict future observation reliably because it didn't 'memorize' the relationships between features and labels"
         f" as seen in the training dataset but the general pattern from feature to labels. "
     )
@@ -29,7 +29,7 @@ def page_project_hypothesis_body():
         f"Mathematical formulas comparison: ```softmax``` performs better than ```sigmoid``` as activation function for the CNN output layer. "
     )
     st.info(
-        f"Both ```softmax``` ```sigmoid``` are typically used as functions for binary or multi class classification problems."
+        f"Both ```softmax``` and ```sigmoid``` are typically used as functions for binary or multi class classification problems."
         f" How an activation function performs on a model can be evaluated by plotting the model's prediction capacity."
         f" The learning curve shows the accuracy and error rate on the training and validation dataset while the model is training.\n\n"
         f" The model trained using ```softmax``` showed less training/validation sets gap and more"
