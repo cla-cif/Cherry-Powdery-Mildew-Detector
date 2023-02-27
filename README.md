@@ -166,15 +166,15 @@ The same CNN applied to an RGB image dataset has 3,715,234 parameters to train c
 
    - Comparison of the same infected leaf image 
    
-  ![gray_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/leaf_gray.png) ![rgb_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/leaf_rgb.png)
+  ![gray_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_gray.png) ![rgb_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/leaf_rgb.png)
   
 
    - Loss/Accuracy of LSTM model trained on grayscale images
    
-   ![gray_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_gray.png) 
+   ![gray_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/model_history_gray.png) 
    - Loss/Accuracy of LSTM model trained on RGB images
    
-   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/model_history_rgb_softmax.png)
+   ![rgb_model](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/streamlit_images/model_history_rgb_softmax.png)
 
 **3. Conclusion**
 
