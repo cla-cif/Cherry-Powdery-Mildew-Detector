@@ -371,7 +371,7 @@ While determining the right hyperparameters for the model to train properly thro
 
 Images producing false predictions
 
-![bug_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/bug-leaf.jpeg)
+![bug_leaf](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/blob/main/readme_images/bug_leaf.jpeg)
 
 - ##  
      - __Description__ : The above image, despite looking healthy was predicted infected. 
