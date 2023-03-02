@@ -295,7 +295,7 @@ The User Story were addressed implementing the following tasks which are present
 >The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not.
 
 In terms of **User Story**:
-- As a client I want a ML model to predict if a given cherry leaf is healthy or contains powdery mildew. 
+- As a client I want a ML model to predict with an accuracy of at least 86% whether a given cherry leaf is healthy or contains powdery mildew. 
 
 The User Story were addressed implementing the following tasks which are presented in the streamlit dashboard and calculated in the Data Visualization notebook:
 - The rationale for the ML model deployed to answer the request is presented [here](#the-rationale-for-the-model)
