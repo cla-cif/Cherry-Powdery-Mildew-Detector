@@ -315,6 +315,8 @@ The User Story were addressed implementing the following tasks which are present
 
 ## ML Business Case
 
+**Visit the Project Handbook on [Wiki](https://github.com/cla-cif/Cherry-Powdery-Mildew-Detector/wiki)**
+
 ### Powdery Mildew classificator
 - We want an ML model to predict if a leaf is infected with powdery mildew or not, based on the image database provided by the Farmy & Foods company. The problem can be understood as supervised learning, a two/multi-class, single-label, classification model.
 - Our ideal outcome is to provide the farmers a faster and more reliable detector for powdery mildew detection.

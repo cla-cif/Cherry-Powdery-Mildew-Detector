@@ -12,11 +12,22 @@ import random
 def page_leaves_visualizer_body():
     st.write("### Leaves Visualizer")
     st.info(
-        f"The client is interested in having a study that visually "
-        f"differentiates a cherry leaf affected by powdery mildew from a healthy one.")
+        f"A study that visually differentiates a cherry leaf affected by powdery mildew from a healthy one.")
+
     st.write(
         f"For additional information, please visit and **read** the "
         f"[Project README file](https://github.com/cla-cif/Detection-Cherry-Powdery-Mildew#readme).")
+
+    st.warning(
+        f"We suspect cherry leaves affected by powdery mildew have clear marks," 
+        f" typically the first symptom is a light-green, circular lesion on either leaf surface," 
+        f" then a subtle white cotton-like growth develops in the infected area.\n\n" 
+        f" This property has to be translated in machine learning terms," 
+        f" images have to be 'prepared' before being fed to the model for an optimal feature extraction and training.\n\n"
+        f" When we are dealing with an Image dataset, it's important to normalize the images in the dataset before training a Neural Network on it." 
+        f" To normalize an image, one will need the mean and standard deviation of the entire dataset that are calculated with a mathematical formula"
+        f" which takes into consideration the properties of an image"
+    )
     
     version = 'v1'
     if st.checkbox("Difference between average and variability image"):
@@ -51,7 +62,6 @@ def page_leaves_visualizer_body():
                       label_to_display=label_to_display,
                       nrows=8, ncols=3, figsize=(10,25))
       st.write("---")
-
 
 
 def image_montage(dir_path, label_to_display, nrows, ncols, figsize=(15,10)):
