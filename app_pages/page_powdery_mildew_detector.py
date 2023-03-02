@@ -12,7 +12,7 @@ from src.machine_learning.predictive_analysis import (
 
 def page_powdery_mildew_detector_body():
     st.info(
-        f"The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not and obtaining a donwnloadable report of the examined leaves."
+        f"Upload pictures of cherry leaves to discover whether it's affected by powdery mildew or not and download a report of the examined leaves."
         )
 
     st.write(

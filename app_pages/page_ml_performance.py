@@ -7,7 +7,10 @@ from src.machine_learning.evaluate_clf import load_test_evaluation
 
 def page_ml_performance_metrics():
     version = 'v1'
-
+    st.info(
+        f"This page provides a user-friendly presentation of how the dataset was divided, how the model performed on that data and"
+        f" a brief explaination of each result. "
+    )
     st.write("### Images distribution per set and label ")
 
     labels_distribution = plt.imread(f"outputs/{version}/number_leaves_sets.png")
