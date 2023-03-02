@@ -19,7 +19,7 @@
 
 ## Dataset Content
 
-The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The images are taken from the client's crop fields and show leaves that are either healthy or infested by powdery mildew a biotrophic fungus. This disease affects many plant species but the client is particularly concerned about their cherry plantation crop since bitter cherries are their flagship product. 
+The dataset contains 4208 featured photos of single cherry leaves against a neutral background. The images are taken from the client's crop fields and show leaves that are either healthy or infested by [powdery mildew](https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew) a biotrophic fungus. This disease affects many plant species but the client is particularly concerned about their cherry plantation crop since bitter cherries are their flagship product. The dataset is sourced from [Kaggle](https://www.kaggle.com/datasets/codeinstitute/cherry-leaves).
 
 ## Business Requirements
 
@@ -50,7 +50,21 @@ Summarizing:
 
 **1. Introduction**
 
-We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. 
+We suspect cherry leaves affected by powdery mildew have clear marks, typically the first symptom is a light-green, circular lesion on either leaf surface, then a subtle white cotton-like growth develops in the infected area. This property has to be translated in machine learning terms, images have to be 'prepared' before being fed to the model for an optimal feature extraction and training. 
+
+   1. Understand problem and mathematical functions
+
+When we are dealing with an Image dataset, it's important to normalize the images in the dataset before training a Neural Network on it. This is required because of the following two core reasons:
+- It helps the trained Neural Network give consistent results for new test images.
+- Helps in Transfer Learning
+To normalize an image, one will need the mean and standard deviation of the entire dataset.
+
+To calculate the **mean** and **standard deviation**, the mathematical formula takes into consideration four dimensions of an image (B, C, H, W) where:
+- B is batch size that is number of images
+- C is the number of channels in the image which will be 3 for RGB images.
+- H is the height of each image
+- W is the width of each image
+Mean and std is calculated separately for each channel. The challenge is that we cannot load the entire dataset into memory to calculate these paramters. We can load a small set of images (batches) one by one and this can make the computation of mean and std non-trivial.
 
 **2. Observation**
 
@@ -76,6 +90,8 @@ In this way the model is able to generalize and predict future observation relia
 **Sources**:
 
 - [Pacific Northwest Pest Management Handbooks](https://pnwhandbooks.org/plantdisease/host-disease/cherry-prunus-spp-powdery-mildew)
+- [Calculate mean and std of Image Dataset](https://iq.opengenus.org/calculate-mean-and-std-of-image-dataset/)
+- [Computing Mean & STD in Image Dataset](https://kozodoi.me/python/deep%20learning/pytorch/tutorial/2021/03/08/image-mean-std.html)
 
 ---
 ### Hypothesis 2
@@ -262,23 +278,40 @@ Part of the process that lead to the current hyperparameters settings and model 
 ### Business Requirement 1: Data Visualization 
 >The client is interested in having a study that visually differentiates a cherry leaf affected by powdery mildew from a healthy one.
 
-The study is presented in the dashboard which displays:
+In terms of **User Story**:
+- As a client I want to display the "mean" and "standard deviation" images for cherry leaves that are healthy and cherry leaves that contain powery mildew so that I can visully differentiate cherry leaves. 
+- As a client I want to display the difference between an average cherry leaf that is healthy and cherry leaf that contains powdery mildew, so that I can visually differentiate cherry leaves. 
+- As a client I wan to display an image montage for cherry leaves that are Healthy and cherry leaves that contain powdery mildew so that I can visually differentiate cherry leaves. 
+
+**To understand why this is important and how it works, see [Hypotesis 1](#hypothesis-1)**
+
+The User Story were addressed implementing the following tasks which are presented in the streamlit dashboard and calculated in the Data Visualization notebook:
 
 -  The difference between an average infected leaf and an average healthy leaf.
 -  The "mean" and "standard deviation" images for healthy and powdery mildew infected leaves 
 -  Image montage for either infected or healthy leaves.
-  
-[See hypothesis 1 for more information](#hypothesis-1)
 
 ### Business Requirement 2: Classification
 >The client is interested in telling whether a given cherry leaf is affected by powdery mildew or not.
 
-The client can upload from the dashboard cherry leaves images in `.jpeg` format up to 200MB obtaining immediate feedback on each leaf. The User Interface of the dashboard with a file uploader widget. The user should upload multiple powdery mildew leaf images. It will display the image and a prediction statement, indicating if the leaf is infected or not with powdery mildew and the probability associated with this statement.
+In terms of **User Story**:
+- As a client I want a ML model to predict if a given cherry leaf is healthy or contains powdery mildew. 
+
+The User Story were addressed implementing the following tasks which are presented in the streamlit dashboard and calculated in the Data Visualization notebook:
+- The rationale for the ML model deployed to answer the request is presented [here](#the-rationale-for-the-model)
+- The client can upload cherry leaves images to the dashboard through an *uploader widget* to get an instant evaluation. Here are the key features of this functionality:
+  - Images have to be uploaded in `.jpeg` format. 
+  - It's possible to upload multiple images at once up to 200MB. 
+  - The dashboard will display the uploaded image and its relative prediction statement, indicating whether the leaf is infected or not with powdery mildew and the probability associated with this statement.
 
 ### Business Requirement 3: Report
 >The client is interested in obtaining a prediction report of the examined leaves. 
 
-Following each batch of uploaded images a downloadable `.csv` report is available with the predicted status. 
+In terms of **User Story**:
+- As a client I want to obtain a report from the ML predictions on new leaves.  
+
+The User Story were addressed implementing the following tasks which are presented in the streamlit dashboard:
+- Following each batch of uploaded images a downloadable `.csv` report is available with the predicted status. 
 
 ## ML Business Case
 
