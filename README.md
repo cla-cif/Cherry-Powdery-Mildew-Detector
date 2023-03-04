@@ -275,10 +275,14 @@ Part of the process that lead to the current hyperparameters settings and model 
 
 ## The rationale to map the business requirements to the Data Visualizations and ML tasks
 
+The three main business requirements were split in several user stories which were translated in Machine Learning Tasks. 
+**All the tasks were manually tested and function as expected.**
+
 ### Business Requirement 1: Data Visualization 
 >The client is interested in having a study that visually differentiates a cherry leaf affected by powdery mildew from a healthy one.
 
 In terms of **User Story**:
+- As a client I want to navigate easily around an interactive dashboard so that I can view and understand the data presented.
 - As a client I want to display the "mean" and "standard deviation" images for cherry leaves that are healthy and cherry leaves that contain powery mildew so that I can visully differentiate cherry leaves. 
 - As a client I want to display the difference between an average cherry leaf that is healthy and cherry leaf that contains powdery mildew, so that I can visually differentiate cherry leaves. 
 - As a client I wan to display an image montage for cherry leaves that are Healthy and cherry leaves that contain powdery mildew so that I can visually differentiate cherry leaves. 
@@ -287,6 +291,7 @@ In terms of **User Story**:
 
 The User Story were addressed implementing the following tasks which are presented in the streamlit dashboard and calculated in the Data Visualization notebook:
 
+-  A Streamlit-based dashboard with an easy navigation side bar (see [Dashboard design](#dashboard-design-streamlit-app-user-interface) for a detailed presentation)
 -  The difference between an average infected leaf and an average healthy leaf.
 -  The "mean" and "standard deviation" images for healthy and powdery mildew infected leaves 
 -  Image montage for either infected or healthy leaves.
@@ -298,6 +303,7 @@ In terms of **User Story**:
 - As a client I want a ML model to predict with an accuracy of at least 86% whether a given cherry leaf is healthy or contains powdery mildew. 
 
 The User Story were addressed implementing the following tasks which are presented in the streamlit dashboard and calculated in the Data Visualization notebook:
+
 - The rationale for the ML model deployed to answer the request is presented [here](#the-rationale-for-the-model)
 - The client can upload cherry leaves images to the dashboard through an *uploader widget* to get an instant evaluation. Here are the key features of this functionality:
   - Images have to be uploaded in `.jpeg` format. 
@@ -510,6 +516,6 @@ This section lists the sources used to build this project.
 
 ### Acknowledgements
 
-Thank to [Code Institute](https://codeinstitute.net/global/)
+Thanks to [Code Institute](https://codeinstitute.net/global/) and my one-off session mentor Mo Shami. 
 
 ### Deployed version at [cherry-powdery-mildew-detector.herokuapp.com](https://cherry-powdery-mildew-detector.herokuapp.com/)
